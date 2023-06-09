@@ -26,7 +26,7 @@ const header: FC<headerProps> = ({}) => {
           className="border-none w-full h-full text-main text-normal outline-0"
         />
         <Link href="#" className="w-[2rem] h-[2rem] mr-4">
-          <FontAwesomeIcon icon={icon.faMagnifyingGlass} />
+          <FontAwesomeIcon icon={icon.faMagnifyingGlass} className="text-3xl" />
         </Link>
       </div>
       <div className=" flex items-center">
@@ -34,7 +34,10 @@ const header: FC<headerProps> = ({}) => {
           Sign in
         </Link>
         <Link href="#" className="w-[2rem] h-[2rem] ">
-          <FontAwesomeIcon icon={icon.faCartShopping} className="text-[#000]" />
+          <FontAwesomeIcon
+            icon={icon.faCartShopping}
+            className="text-[#000] text-3xl"
+          />
         </Link>
       </div>
     </div>

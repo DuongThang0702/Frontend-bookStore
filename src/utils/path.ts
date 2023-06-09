@@ -9,15 +9,16 @@ const path = {
   BLOG: "blog",
   //fiction
   FICTION: "fiction",
-  FANTASY: "fantasy",
-  historicalFiction: "historicalfiction",
+  FANTASY: "fiction/fantasy",
+  POETRY: "fiction/poetry",
+  historicalFiction: "fiction/historicalfiction",
   //nonfiction
-  TRAVEL: "travel",
-  MYSTERY: "mystery",
-  PHILOSOPHY: "philosophy",
-  BUSINESS: "business",
-  AUTOBIOGRAPHY: "autobiography",
-  POETRY: "poetry",
+  NONFICTION: "nonfiction",
+  TRAVEL: "nonfiction/travel",
+  MYSTERY: "nonfiction/mystery",
+  PHILOSOPHY: "nonfiction/philosophy",
+  BUSINESS: "nonfiction/business",
+  AUTOBIOGRAPHY: "nonfiction/autobiography",
 };
 
 export default path;

@@ -5,7 +5,7 @@ interface pageProps {}
 const page: FC<pageProps> = ({}) => {
   return (
     <>
-      <h1>finction</h1>
+      <h1>HistoricalFiction</h1>
     </>
   );
 };

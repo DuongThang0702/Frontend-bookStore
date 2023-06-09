@@ -1,8 +1,7 @@
-"use client";
-
 import "./globals.css";
-import Header from "@/components/header";
-import Navigation from "@/components/navigation";
+
+import { Providers } from "../redux/provider";
+
 export default function RootLayout({
   children,
 }: {
@@ -10,13 +9,8 @@ export default function RootLayout({
 }) {
   return (
     <html lang="en">
-      <head></head>
       <body suppressHydrationWarning={true}>
-        <div className="border-b">
-          <Header />
-          <Navigation />
-        </div>
-        {children}
+        <Providers>{children}</Providers>
       </body>
     </html>
   );
