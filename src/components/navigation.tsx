@@ -1,5 +1,3 @@
-"use client";
-
 import { FC } from "react";
 import Menu from "./Menu";
 
@@ -20,7 +18,7 @@ const navigation: FC<navigationProps> = ({ NavigationData }) => {
       <div className="relative flex">
         <div className=" px-8 flex " style={{ marginRight: "-14rem" }}>
           {NavigationData.map((item) => (
-            <Menu item={item} elementId={item.id} key={item.id} />
+            <Menu item={item} key={item.id} />
           ))}
         </div>
       </div>

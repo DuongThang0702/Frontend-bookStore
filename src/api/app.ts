@@ -1,3 +1,3 @@
-import axios from "../config/axios";
+import axiosClient from "../config/axios";
 
-export const getAll = () => axios({ url: "/category", method: "get" });
+export const getAll = () => axiosClient({ url: "/category", method: "get" });

@@ -1,16 +1,19 @@
 "use client";
+import { Banner } from "@/components";
+import { FC } from "react";
+import { BookFrame } from "@/components";
 
-import { useSelector } from "react-redux";
-import { RootState } from "@/redux/store";
-import { useEffect } from "react";
+interface homeProps {}
 
-export default function Home() {
-  const { categories } = useSelector((state: RootState) => state.app);
-  useEffect(() => {}, []);
-  console.log(categories);
+const home: FC<homeProps> = ({}) => {
   return (
     <>
-      <h1>Home</h1>
+      <Banner />
+      <div className="w-main mx-auto">
+        <BookFrame />
+      </div>
     </>
   );
-}
+};
+
+export default home;

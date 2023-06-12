@@ -15,6 +15,7 @@ module.exports = {
       colors: {
         purple: "#6B0DDE",
         normal: "#2c293b",
+        link: "#7f48d9",
       },
       fontSize: {
         main: "2rem",

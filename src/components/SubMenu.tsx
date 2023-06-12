@@ -7,7 +7,7 @@ interface SubMenuProps {
 
 const SubMenu: FC<SubMenuProps> = ({ item }) => {
   return (
-    <div className="absolute">
+    <div className="absolute z-10 bg-[white]">
       {item.map((el) => {
         return (
           <Link

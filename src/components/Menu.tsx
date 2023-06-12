@@ -1,4 +1,6 @@
-import { FC, useState, useEffect } from "react";
+"use client";
+
+import { FC, useState } from "react";
 import { MenuData } from "./navigation";
 import { usePathname } from "next/navigation";
 import Link from "next/link";
@@ -6,7 +8,6 @@ import SubMenu from "./SubMenu";
 
 interface MenuProps {
   item: MenuData;
-  elementId: number;
 }
 
 const Menu: FC<MenuProps> = ({ item }) => {
