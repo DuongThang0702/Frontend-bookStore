@@ -29,7 +29,7 @@ const book: FC<bookProps> = ({ book }) => {
                     src={el.image.path}
                     width={140}
                     height={123}
-                    alt="demo"
+                    alt="image book"
                   />
                 </Link>
               </div>

@@ -11,7 +11,7 @@ const BooksCard: FC<BooksCardProps> = ({ book }) => {
   return (
     <div className="w-main grid grid-cols-4 gap-4">
       {book?.map((el) => (
-        <Link href={"#"} className="flex">
+        <Link key={el._id} href={"#"} className="flex">
           <Image
             src={el.image.path}
             width={100}
