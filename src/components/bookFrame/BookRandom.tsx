@@ -31,7 +31,7 @@ const BooksRandom: FC<BooksRandomProps> = ({ limit, style, title }) => {
   };
   useEffect(() => {
     fetchData();
-  }, [randomBook]);
+  }, []);
 
   return (
     <>
