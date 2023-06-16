@@ -6,7 +6,10 @@ const path = {
   NEWBOOKS: "new-books",
   BESTSELLER: "best-seller",
   GIFTCARD: "gift-card",
+  DETAIL_BOOK: "book",
   BLOG: "blog",
+  PRIDE_MONTH: "pride-month",
+  YA: "ya",
   //fiction
   FICTION: "fiction",
   FANTASY: "fiction/fantasy",
@@ -19,6 +22,16 @@ const path = {
   PHILOSOPHY: "nonfiction/philosophy",
   BUSINESS: "nonfiction/business",
   AUTOBIOGRAPHY: "nonfiction/autobiography",
+
+  //footer
+  ABOUT: "about",
+  BECOME_AN_AFFILIATE: "become-an-affiliate",
+  CONTACT: "contact",
+  TERMS_OF_USE: "terms-of-use",
+  FAQ: "Indiebound-Bookshop-Changeover-FAQ",
+
+  //login
+  PRIVATE_NOTICE: "private-notice",
 };
 
 export default path;

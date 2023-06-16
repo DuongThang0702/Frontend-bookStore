@@ -26,8 +26,8 @@ export interface IBook {
   updatedAt: string;
 }
 
-export interface BookData {
-  book?: Array<IBook>;
-  err?: number;
-  count?: number;
+export interface ResponseBooks {
+  books: IBook[] | null;
+  count: number;
+  error: number;
 }

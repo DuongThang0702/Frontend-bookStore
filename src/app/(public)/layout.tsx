@@ -1,6 +1,6 @@
 "use client";
 
-import { Header, Navigation } from "@/components/";
+import { Footer, Header, Navigation } from "@/components/";
 import { navigationLink } from "@/utils/contants";
 
 export default function PublicLayout({
@@ -9,12 +9,15 @@ export default function PublicLayout({
   children: React.ReactNode;
 }) {
   return (
-    <div className="">
-      <div className="border-b">
+    <>
+      <div className="border-b fixed bg-white z-30 w-full">
         <Header />
         <Navigation NavigationData={navigationLink} />
       </div>
-      {children}
-    </div>
+      <div className="pt-[17.1rem]">
+        {children}
+        <Footer />
+      </div>
+    </>
   );
 }

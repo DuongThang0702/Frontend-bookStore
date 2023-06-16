@@ -2,6 +2,11 @@ import path from "./path";
 
 export const navigationLink = [
   {
+    id: 18,
+    value: "Home",
+    path: path.HOME,
+  },
+  {
     id: 1,
     value: "Gift Cards",
     path: path.GIFTCARD,
@@ -47,4 +52,23 @@ export const navigationLink = [
     value: "Blog",
     path: path.BLOG,
   },
+  {
+    id: 16,
+    value: "Pride Month",
+    path: path.PRIDE_MONTH,
+  },
+  {
+    id: 17,
+    value: "YA",
+    path: path.YA,
+  },
+];
+
+export const footerLink = [
+  { id: 1, path: path.ABOUT, value: "About" },
+  { id: 4, path: path.CONTACT, value: "Contact" },
+  { id: 3, path: path.GIFTCARD, value: "Gift Card" },
+  { id: 2, path: path.BECOME_AN_AFFILIATE, value: "Become an affiliate" },
+  { id: 5, path: path.TERMS_OF_USE, value: "Returns and Refund Policy" },
+  { id: 6, path: path.FAQ, value: "Indiebound - Bookshop Changeover FAQ" },
 ];

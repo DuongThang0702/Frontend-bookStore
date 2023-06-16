@@ -1,7 +1,7 @@
 import { FC, useEffect, useState } from "react";
 import ListBook from "../ListBook";
-import { BookData } from "./IBook";
-import { BookApi } from "@/api";
+import { IBook } from "../../utils/IBook";
+import { apiGetBooks } from "@/api";
 import Loading from "../Loading";
 import Book from "./Book";
 import BooksCard from "./BooksCard";
@@ -13,18 +13,17 @@ interface BooksRandomProps {
 }
 
 const BooksRandom: FC<BooksRandomProps> = ({ limit, style, title }) => {
-  const [randomBook, setRandomBook] = useState<BookData | null>(null);
+  const [randomBook, setRandomBook] = useState<IBook[] | null>(null);
   const [pending, setPending] = useState<boolean>(false);
   const [error, setError] = useState<boolean>(false);
-
   const fetchData = async () => {
     setPending(true);
-    await BookApi.apiGetBooks({
-      page: Math.round(Math.random() * 8),
+    await apiGetBooks({
+      page: Math.round(Math.random() * 19),
       limit,
     })
       .then((response) => {
-        setRandomBook(response.data);
+        setRandomBook(response?.data?.books);
         setPending(false);
       })
       .catch((err) => setError(true));
@@ -41,9 +40,9 @@ const BooksRandom: FC<BooksRandomProps> = ({ limit, style, title }) => {
       ) : error ? (
         <p>Something went wrong !</p>
       ) : style === 1 ? (
-        <Book book={randomBook?.book} />
+        <Book book={randomBook} />
       ) : (
-        <BooksCard book={randomBook?.book} />
+        <BooksCard book={randomBook} />
       )}
     </>
   );

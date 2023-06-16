@@ -1,4 +1,3 @@
-import * as appApi from "./app";
-import * as BookApi from "./book";
-
-export { appApi, BookApi };
+export * from "./app";
+export * from "./book";
+export * from "./user";

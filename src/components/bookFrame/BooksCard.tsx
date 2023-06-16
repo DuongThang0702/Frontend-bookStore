@@ -1,17 +1,21 @@
 import { FC } from "react";
-import { IBook } from "./IBook";
+import { IBook } from "../../utils/IBook";
 import Image from "next/image";
 import Link from "next/link";
-
+import path from "@/utils/path";
 interface BooksCardProps {
-  book?: Array<IBook>;
+  book: Array<IBook> | null;
 }
 
 const BooksCard: FC<BooksCardProps> = ({ book }) => {
   return (
     <div className="w-main grid grid-cols-4 gap-4">
       {book?.map((el) => (
-        <Link key={el._id} href={"#"} className="flex">
+        <Link
+          key={el._id}
+          href={`/${path.DETAIL_BOOK}/${el._id}`}
+          className="flex"
+        >
           <Image
             src={el.image.path}
             width={100}

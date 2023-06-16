@@ -11,11 +11,13 @@ module.exports = {
         title: ["GT Super Txt Trial", "sans-serif"],
         main: ["Poppins", "sans-serif"],
         header: ["IBM Plex Sans", "sans-serif"],
+        read: ["Roboto Slab", "serif"],
       },
       colors: {
         purple: "#6B0DDE",
-        normal: "#2c293b",
+        darkPurple: "#2b0f42",
         link: "#7f48d9",
+        red: "#de2454",
       },
       fontSize: {
         main: "2rem",
@@ -25,6 +27,7 @@ module.exports = {
       },
       backgroundColor: {
         purple: "#6B0DDE",
+        red: "#de2454",
       },
     },
   },

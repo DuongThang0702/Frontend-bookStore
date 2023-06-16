@@ -19,17 +19,25 @@ const header: FC<headerProps> = ({}) => {
         />
       </Link>
 
-      <div className="flex items-center relative border p-4 rounded-full w-[60rem] h-[5rem]">
+      <div className="relative">
         <input
           type="text"
           placeholder="Search books"
-          className="border-none w-full h-full text-main text-normal outline-0"
+          className="w-[70rem] h-[5rem] rounded-full text-main text-normal border-none bg-[#F6F5F7] p-6 focus:outline-[#6B0DDE] focus:outline-6"
         />
-        <Link href="#" className="w-[2rem] h-[2rem] mr-4">
-          <FontAwesomeIcon icon={icon.faMagnifyingGlass} className="text-3xl" />
-        </Link>
+        <span className="absolute bottom-[1.5rem] right-[1.25%]">
+          <Link href="#" className="w-[2rem] h-[2rem] mr-4">
+            <FontAwesomeIcon
+              icon={icon.faMagnifyingGlass}
+              className="text-3xl text-purple"
+            />
+          </Link>
+        </span>
       </div>
       <div className=" flex items-center">
+        <Link href={`${path.LOGIN}`} className=" mr-12 text-2xl font-header">
+          Choose a Bookstore
+        </Link>
         <Link href={`${path.LOGIN}`} className=" mr-12 text-2xl font-header">
           Sign in
         </Link>

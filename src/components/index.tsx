@@ -7,3 +7,5 @@ export { default as ListBook } from "./ListBook";
 export { default as Book } from "./bookFrame/Book";
 export { default as BestSeller } from "./bookFrame/BestSeller";
 export { default as BookFrame } from "./bookFrame/";
+export { default as Footer } from "./Footer";
+export { default as InputField } from "./InputField";

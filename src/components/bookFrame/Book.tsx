@@ -2,10 +2,11 @@ import { FC } from "react";
 import Slider from "react-slick";
 import Link from "next/link";
 import Image from "next/image";
-import { IBook } from "./IBook";
+import { IBook } from "../../utils/IBook";
+import path from "@/utils/path";
 
 interface bookProps {
-  book?: Array<IBook>;
+  book: IBook[] | null;
 }
 
 const book: FC<bookProps> = ({ book }) => {
@@ -24,7 +25,7 @@ const book: FC<bookProps> = ({ book }) => {
           {book?.map((el) => {
             return (
               <div key={el._id}>
-                <Link href={"#"}>
+                <Link href={`/${path.DETAIL_BOOK}/${el._id}`}>
                   <Image
                     src={el.image.path}
                     width={140}
