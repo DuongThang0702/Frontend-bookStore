@@ -1,15 +1,11 @@
-"use client";
-
 import "@/style/globals.css";
 import "slick-carousel/slick/slick.css";
 import "slick-carousel/slick/slick-theme.css";
 import { Providers } from "../redux/provider";
-import { Metadata } from "next";
 
-export const metadata: Metadata = {
-  title: "Next.js",
+export const metadata = {
+  title: "BooksShop",
 };
-
 export default function RootLayout({
   children,
 }: {

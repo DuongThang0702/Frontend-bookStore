@@ -1,6 +1,5 @@
 "use client";
-import { BookApi } from "@/api";
-import { BookData, IBook } from "@/utils/IBook";
+import { IBook } from "@/utils/IBook";
 import { FC, useEffect, useState } from "react";
 
 interface pageProps {

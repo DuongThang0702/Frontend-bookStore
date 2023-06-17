@@ -7,6 +7,7 @@ import { apiRegister } from "@/api";
 import Button from "@/components/button";
 import Swal from "sweetalert2";
 import { useRouter } from "next/navigation";
+import path from "@/utils/path";
 interface pageProps {}
 
 const page: FC<pageProps> = ({}) => {
@@ -20,9 +21,10 @@ const page: FC<pageProps> = ({}) => {
 
   const handleSubmit = useCallback(async () => {
     const response = await apiRegister(payload);
+
     if (response.data.error === 0) {
       Swal.fire("Congralution", response.data.mes, "success").then(() =>
-        router.push("/login")
+        router.push(`/${path.LOGIN}`)
       );
     } else {
       Swal.fire("Oops!", response.data.mes, "error");
