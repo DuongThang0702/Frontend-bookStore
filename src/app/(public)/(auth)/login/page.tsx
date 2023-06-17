@@ -10,9 +10,8 @@ import { apiLogin } from "@/api";
 import Swal from "sweetalert2";
 import { useDispatch } from "react-redux";
 import { register } from "@/redux/user/user";
-interface pageProps {}
 
-const page: FC<pageProps> = ({}) => {
+const PageLogin: FC = ({}) => {
   const dispatch = useDispatch();
   const router = useRouter();
   const [payload, setPayload] = useState<IUser>({
@@ -94,4 +93,4 @@ const page: FC<pageProps> = ({}) => {
   );
 };
 
-export default page;
+export default PageLogin;

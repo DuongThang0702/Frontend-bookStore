@@ -5,9 +5,7 @@ import { Book, ListBook } from "@/components/";
 import Loading from "../Loading";
 import { IBook } from "@/utils/IBook";
 
-interface BestSellerProps {}
-
-const BestSeller: FC<BestSellerProps> = ({}) => {
+const BestSeller: FC = ({}) => {
   const [bestSeller, setBestSeller] = useState<IBook[] | null>(null);
   const [pending, setPending] = useState<boolean>(false);
   const [error, setError] = useState<Boolean>(false);

@@ -7,7 +7,7 @@ interface pageProps {
   params: { status: string };
 }
 
-const page: FC<pageProps> = ({ params }) => {
+const Page: FC<pageProps> = ({ params }) => {
   const router = useRouter();
   useEffect(() => {
     if (params.status === "success") {
@@ -22,4 +22,4 @@ const page: FC<pageProps> = ({ params }) => {
   return <div className="h-screen w-screen bg-gray-100"></div>;
 };
 
-export default page;
+export default Page;

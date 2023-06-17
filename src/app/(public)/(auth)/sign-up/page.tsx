@@ -10,7 +10,7 @@ import { useRouter } from "next/navigation";
 import path from "@/utils/path";
 interface pageProps {}
 
-const page: FC<pageProps> = ({}) => {
+const Page: FC<pageProps> = ({}) => {
   const router = useRouter();
   const [payload, setPayload] = useState<Register>({
     firstName: "",
@@ -86,4 +86,4 @@ const page: FC<pageProps> = ({}) => {
   );
 };
 
-export default page;
+export default Page;

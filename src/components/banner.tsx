@@ -1,9 +1,8 @@
 import { FC } from "react";
 import Slider from "react-slick";
 import Image from "next/image";
-interface indexProps {}
 
-const index: FC<indexProps> = ({}) => {
+const Banner: FC = ({}) => {
   const settings = {
     slidesToShow: 1,
     slidesToScroll: 1,
@@ -22,4 +21,4 @@ const index: FC<indexProps> = ({}) => {
   );
 };
 
-export default index;
+export default Banner;

@@ -4,9 +4,7 @@ import { FC } from "react";
 import { BookFrame } from "@/components";
 import FooterMiddle from "@/components/FooterMiddle";
 
-interface homeProps {}
-
-const home: FC<homeProps> = ({}) => {
+const Home: FC = ({}) => {
   return (
     <>
       <Banner />
@@ -18,4 +16,4 @@ const home: FC<homeProps> = ({}) => {
   );
 };
 
-export default home;
+export default Home;

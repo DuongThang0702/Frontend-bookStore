@@ -2,7 +2,6 @@
 
 import { Footer, Header, Navigation } from "@/components/";
 import { navigationLink } from "@/utils/contants";
-import { Metadata } from "next";
 
 export default function PublicLayout({
   children,

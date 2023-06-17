@@ -5,9 +5,7 @@ import ListBook from "../ListBook";
 import Loading from "../Loading";
 import Book from "./Book";
 
-interface NewBookProps {}
-
-const NewBook: FC<NewBookProps> = ({}) => {
+const NewBook: FC = ({}) => {
   const limit = 20;
   const [newBook, setNewBook] = useState<IBook[] | null>(null);
   const [pending, setPending] = useState<boolean>(false);

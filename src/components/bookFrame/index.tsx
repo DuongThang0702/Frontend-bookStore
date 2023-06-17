@@ -5,7 +5,7 @@ import BooksRandom from "./BookRandom";
 
 interface indexProps {}
 
-const index: FC<indexProps> = ({}) => {
+const Index: FC<indexProps> = ({}) => {
   return (
     <>
       <BestSeller />
@@ -24,4 +24,4 @@ const index: FC<indexProps> = ({}) => {
   );
 };
 
-export default index;
+export default Index;

@@ -1,8 +1,6 @@
 import { FC } from "react";
 
-interface pageProps {}
-
-const page: FC<pageProps> = ({}) => {
+const Page: FC = ({}) => {
   return (
     <>
       <h1>blog</h1>
@@ -10,4 +8,4 @@ const page: FC<pageProps> = ({}) => {
   );
 };
 
-export default page;
+export default Page;

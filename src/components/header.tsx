@@ -4,9 +4,8 @@ import Link from "next/link";
 import { FC } from "react";
 import icon from "@/utils/icon";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-interface headerProps {}
 
-const header: FC<headerProps> = ({}) => {
+const Header: FC = ({}) => {
   return (
     <div className="flex justify-between p-12 items-center">
       <Link href={path.HOME}>
@@ -35,7 +34,7 @@ const header: FC<headerProps> = ({}) => {
         </span>
       </div>
       <div className=" flex items-center">
-        <Link href={`${path.LOGIN}`} className=" mr-12 text-2xl font-header">
+        <Link href={`${path.LOGIN}`} className=" mr-12 text-2xl font-H">
           Choose a Bookstore
         </Link>
         <Link href={`${path.LOGIN}`} className=" mr-12 text-2xl font-header">
@@ -52,4 +51,4 @@ const header: FC<headerProps> = ({}) => {
   );
 };
 
-export default header;
+export default Header;

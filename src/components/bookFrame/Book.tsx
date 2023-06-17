@@ -9,7 +9,7 @@ interface bookProps {
   book: IBook[] | null;
 }
 
-const book: FC<bookProps> = ({ book }) => {
+const Book: FC<bookProps> = ({ book }) => {
   const settings = {
     dots: false,
     infinite: true,
@@ -42,4 +42,4 @@ const book: FC<bookProps> = ({ book }) => {
   );
 };
 
-export default book;
+export default Book;

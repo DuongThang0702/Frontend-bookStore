@@ -6,7 +6,7 @@ interface buttonProps {
   name: string;
 }
 
-const button: FC<buttonProps> = ({ name, style, hanleOnClick }) => {
+const Button: FC<buttonProps> = ({ name, style, hanleOnClick }) => {
   return (
     <button
       type="button"
@@ -24,4 +24,4 @@ const button: FC<buttonProps> = ({ name, style, hanleOnClick }) => {
   );
 };
 
-export default memo(button);
+export default memo(Button);

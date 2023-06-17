@@ -6,7 +6,7 @@ interface pageProps {
   params: { book: [title: string, bid: string] };
 }
 
-const page: FC<pageProps> = ({ params }) => {
+const Page: FC<pageProps> = ({ params }) => {
   console.log(params.book);
 
   // const [books, setBooks] = useState<BookData | null>(null);
@@ -25,4 +25,4 @@ const page: FC<pageProps> = ({ params }) => {
   return <>{/* <h1>{books?.bookData?._id}</h1> */}</>;
 };
 
-export default page;
+export default Page;
