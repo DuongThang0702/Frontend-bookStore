@@ -1,8 +1,11 @@
 const path = {
   PUBLIC: "*",
-  HOME: "/",
+  //user
   LOGIN: "login",
   SIGNUP: "sign-up",
+  FORGOT_PASSWORD: "forgot-password",
+  //navigation
+  HOME: "/",
   NEWBOOKS: "new-books",
   BESTSELLER: "best-seller",
   GIFTCARD: "gift-card",
@@ -10,6 +13,7 @@ const path = {
   BLOG: "blog",
   PRIDE_MONTH: "pride-month",
   YA: "ya",
+  //category
   //fiction
   FICTION: "fiction",
   FANTASY: "fiction/fantasy",
@@ -22,7 +26,6 @@ const path = {
   PHILOSOPHY: "nonfiction/philosophy",
   BUSINESS: "nonfiction/business",
   AUTOBIOGRAPHY: "nonfiction/autobiography",
-
   //footer
   ABOUT: "about",
   BECOME_AN_AFFILIATE: "become-an-affiliate",

@@ -19,7 +19,7 @@ const PageLogin: FC = ({}) => {
     password: "",
   });
 
-  const handleOnClick = useCallback(async () => {
+  const handleSubmit = useCallback(async () => {
     const response = await apiLogin(payload);
 
     if (response.data.error === 0) {
@@ -74,15 +74,15 @@ const PageLogin: FC = ({}) => {
               </span>
               .
             </div>
-            <Button name="Login" hanleOnClick={handleOnClick} />
+            <Button name="Login" hanleOnClick={handleSubmit} />
             <p className="text-[1.6rem] mb-12">
               or{" "}
-              <Link className="text-red" href={"/sign-up"}>
+              <Link className="text-red" href={`/${path.SIGNUP}`}>
                 {" "}
                 Create a new account{" "}
               </Link>{" "}
               |{" "}
-              <Link className="text-red" href={"/forgot-password"}>
+              <Link className="text-red" href={`/${path.FORGOT_PASSWORD}`}>
                 Forgot Password?
               </Link>
             </p>

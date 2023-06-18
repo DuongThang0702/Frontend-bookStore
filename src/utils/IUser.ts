@@ -7,6 +7,14 @@ export interface Register extends IUser {
   lastName: string;
 }
 
+export interface ForgotPassword {
+  email: string;
+}
+
+export interface ResetPassword {
+  password: string;
+}
+
 export interface UserData {
   _id: string;
   email: string;

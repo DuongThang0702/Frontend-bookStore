@@ -10,3 +10,9 @@ export const apiRegister = (data: object) =>
 
 export const apiLogin = (data: object) =>
   axiosClient({ url: "/user/login", method: "post", data });
+
+export const apiForgotPassword = (data: object) =>
+  axiosClient({ url: "/user/forgot-password", method: "post", data });
+
+export const apiResetPassword = (data: object) =>
+  axiosClient({ url: "/user/reset-password", method: "patch", data });

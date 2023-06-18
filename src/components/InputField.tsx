@@ -5,9 +5,7 @@ interface InputFieldProps {
   nameKey: string;
   type?: string;
   value: string;
-  invalidField?: boolean;
   setValue: Dispatch<SetStateAction<any>>;
-  setInvalidField?: Dispatch<SetStateAction<boolean>>;
 }
 
 const InputField: FC<InputFieldProps> = ({
@@ -15,18 +13,18 @@ const InputField: FC<InputFieldProps> = ({
   type,
   value,
   nameKey,
-  invalidField,
   setValue,
-  setInvalidField,
 }) => {
   return (
     <div className="flex flex-col mt-8">
       <label
+        htmlFor={nameKey}
         className={styleLabel ? styleLabel : "text-[1.6rem] mb-4 text-start"}
       >
         {nameKey.slice(0, 1).toUpperCase() + nameKey.slice(1)}
       </label>
       <input
+        id={nameKey}
         type={type ? type : "text"}
         value={value}
         onChange={(e) =>
