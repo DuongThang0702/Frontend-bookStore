@@ -11,7 +11,9 @@ const Page: FC<pageProps> = ({ params }) => {
   const router = useRouter();
   useEffect(() => {
     if (params.status === "success") {
-      router.push(`/${path.LOGIN}`);
+      Swal.fire("Congration!", "Register success", "success").then(() =>
+        router.push(`/${path.LOGIN}`)
+      );
     } else {
       Swal.fire("Oops!", "Register failed", "error").then(() =>
         router.push(`/${path.SIGNUP}`)

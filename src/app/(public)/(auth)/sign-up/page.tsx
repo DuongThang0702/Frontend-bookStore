@@ -1,5 +1,5 @@
 "use client";
-import { FC, useCallback, useState } from "react";
+import { FC, useCallback, useEffect, useState } from "react";
 import Image from "next/image";
 import { Register } from "@/utils/IUser";
 import { InputField } from "@/components";
@@ -12,13 +12,18 @@ interface pageProps {}
 
 const Page: FC<pageProps> = ({}) => {
   const router = useRouter();
+  const [isValid, setIsValid] = useState<boolean>(false);
   const [payload, setPayload] = useState<Register>({
     firstName: "",
     lastName: "",
     email: "",
     password: "",
   });
-
+  useEffect(() => {
+    if (payload !== null) {
+      setIsValid(Object.values(payload).every((value) => value !== ""));
+    }
+  }, [payload]);
   const handleSubmit = useCallback(async () => {
     const response = await apiRegister(payload);
 
@@ -78,7 +83,11 @@ const Page: FC<pageProps> = ({}) => {
               setValue={setPayload}
               value={payload.lastName}
             />
-            <Button name="Subscribe" hanleOnClick={handleSubmit} />
+            <Button
+              name="Subscribe"
+              hanleOnClick={handleSubmit}
+              status={isValid}
+            />
           </div>
         </div>
       </div>

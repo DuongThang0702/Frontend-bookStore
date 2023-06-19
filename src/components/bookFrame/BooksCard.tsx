@@ -3,6 +3,7 @@ import { IBook } from "../../utils/IBook";
 import Image from "next/image";
 import Link from "next/link";
 import path from "@/utils/path";
+
 interface BooksCardProps {
   book: Array<IBook> | null;
 }
@@ -13,7 +14,7 @@ const BooksCard: FC<BooksCardProps> = ({ book }) => {
       {book?.map((el) => (
         <Link
           key={el._id}
-          href={`/${path.DETAIL_BOOK}/${el._id}`}
+          href={`/${path.DETAIL_BOOK}/${el.slug}/${el._id}`}
           className="flex"
         >
           <Image

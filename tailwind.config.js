@@ -29,6 +29,9 @@ module.exports = {
         purple: "#6B0DDE",
         red: "#de2454",
       },
+      boxShadow: {
+        menu: "rgba(0, 0, 0, 0.35) 0px 5px 15px",
+      },
     },
   },
   plugins: [],

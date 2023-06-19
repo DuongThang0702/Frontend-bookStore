@@ -5,7 +5,7 @@ import Button from "@/components/button";
 import { ResetPassword } from "@/utils/IUser";
 import path from "@/utils/path";
 import { useRouter } from "next/navigation";
-import { FC, useCallback, useState } from "react";
+import { FC, useCallback, useEffect, useState } from "react";
 import { toast } from "react-toastify";
 interface PageProps {
   params: { token: string };
@@ -13,6 +13,7 @@ interface PageProps {
 
 const Page: FC<PageProps> = ({ params }) => {
   const router = useRouter();
+  const [isValid, setIsValid] = useState<boolean>(false);
   const [payload, setPayload] = useState<ResetPassword>({
     password: "",
   });
@@ -26,6 +27,11 @@ const Page: FC<PageProps> = ({ params }) => {
       router.push(`/${path.LOGIN}`);
     } else toast.error(response.data.mes);
   }, [payload]);
+  useEffect(() => {
+    if (payload !== null) {
+      setIsValid(Object.values(payload).every((value) => value !== ""));
+    }
+  }, [payload]);
   return (
     <>
       <div className="w-1/2 mx-auto p-[2.12rem]">
@@ -38,7 +44,11 @@ const Page: FC<PageProps> = ({ params }) => {
           value={payload.password}
           setValue={setPayload}
         />
-        <Button name="Reset Password" hanleOnClick={handleSubmit} />
+        <Button
+          name="Reset Password"
+          hanleOnClick={handleSubmit}
+          status={isValid}
+        />
       </div>
     </>
   );

@@ -3,14 +3,21 @@ import { apiForgotPassword } from "@/api";
 import { InputField } from "@/components";
 import Button from "@/components/button";
 import { ForgotPassword } from "@/utils/IUser";
-import { FC, useCallback, useState } from "react";
+import { FC, useCallback, useEffect, useState } from "react";
 import { toast } from "react-toastify";
+
 const Page: FC = ({}) => {
+  const [isValid, setIsValid] = useState<boolean>(false);
   const [payload, setPayload] = useState<ForgotPassword>({ email: "" });
   const handleSubmit = useCallback(async () => {
     const response = await apiForgotPassword(payload);
     if (response.data.error === 0) toast.success(response.data.mes);
     else toast.error(response.data.mes);
+  }, [payload]);
+  useEffect(() => {
+    if (payload !== null) {
+      setIsValid(Object.values(payload).every((value) => value !== ""));
+    }
   }, [payload]);
   return (
     <>
@@ -24,7 +31,11 @@ const Page: FC = ({}) => {
           value={payload.email}
           setValue={setPayload}
         />
-        <Button name="Forgot Password" hanleOnClick={handleSubmit} />
+        <Button
+          name="Forgot Password"
+          hanleOnClick={handleSubmit}
+          status={isValid}
+        />
       </div>
     </>
   );

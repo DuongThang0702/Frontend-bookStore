@@ -7,16 +7,18 @@ interface SubMenuProps {
 
 const SubMenu: FC<SubMenuProps> = ({ item }) => {
   return (
-    <div className="absolute z-10 bg-[white]">
+    <div className="absolute z-10 bg-[white] shadow-menu">
       {item.map((el) => {
         return (
-          <Link
-            key={el.id}
-            href={`/${el.path}`}
-            className="text-2xl block font-header font-light opacity-80 tracking-wider p-8 mr-2 hover:text-purple "
-          >
-            {el.value}
-          </Link>
+          <div key={el.id}>
+            <Link
+              href={`/${el.path}`}
+              className="text-2xl min-w-[20rem] block font-header 
+              font-light opacity-80 tracking-wider p-8 mr-2 hover:text-purple"
+            >
+              {el.value}
+            </Link>
+          </div>
         );
       })}
     </div>

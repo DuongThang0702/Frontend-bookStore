@@ -4,6 +4,8 @@ const path = {
   LOGIN: "login",
   SIGNUP: "sign-up",
   FORGOT_PASSWORD: "forgot-password",
+  PROFILE: "profile",
+  LOGOUT: "logout",
   //navigation
   HOME: "/",
   NEWBOOKS: "new-books",

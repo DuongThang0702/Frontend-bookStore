@@ -1,6 +1,6 @@
 "use client";
 import Link from "next/link";
-import { FC, useCallback, useState } from "react";
+import { FC, useCallback, useEffect, useState } from "react";
 import path from "@/utils/path";
 import { InputField } from "@/components/";
 import Button from "@/components/button";
@@ -9,31 +9,35 @@ import { useRouter } from "next/navigation";
 import { apiLogin } from "@/api";
 import Swal from "sweetalert2";
 import { useDispatch } from "react-redux";
-import { register } from "@/redux/user/user";
+import { login } from "@/redux/user/user";
 
 const PageLogin: FC = ({}) => {
   const dispatch = useDispatch();
   const router = useRouter();
+  const [isValid, setIsValid] = useState<boolean>(false);
   const [payload, setPayload] = useState<IUser>({
     email: "",
     password: "",
   });
+  useEffect(() => {
+    if (payload !== null) {
+      setIsValid(Object.values(payload).every((value) => value !== ""));
+    }
+  }, [payload]);
 
   const handleSubmit = useCallback(async () => {
     const response = await apiLogin(payload);
-
     if (response.data.error === 0) {
       dispatch(
-        register({
+        login({
           isLoggedIn: true,
-          userData: response.data.user_data,
           access_token: response.data.access_token,
         })
       );
-      router.push(`/${path.HOME}`);
-    } else {
-      Swal.fire("Oops!", response.data.mes, "error");
-    }
+      await Swal.fire("Congration", response.data.mes, "success").then(() => {
+        router.push(`/${path.HOME}`);
+      });
+    } else Swal.fire("Oops!", response.data.mes, "error");
   }, [payload]);
 
   return (
@@ -74,7 +78,7 @@ const PageLogin: FC = ({}) => {
               </span>
               .
             </div>
-            <Button name="Login" hanleOnClick={handleSubmit} />
+            <Button name="Login" hanleOnClick={handleSubmit} status={isValid} />
             <p className="text-[1.6rem] mb-12">
               or{" "}
               <Link className="text-red" href={`/${path.SIGNUP}`}>

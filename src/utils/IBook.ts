@@ -26,6 +26,10 @@ export interface IBook {
   updatedAt: string;
 }
 
+export interface BookProps {
+  book: IBook[] | null;
+}
+
 export interface ResponseBooks {
   books: IBook[] | null;
   count: number;

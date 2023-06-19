@@ -3,7 +3,6 @@
 import { Footer, Header, Navigation } from "@/components/";
 import { navigationLink } from "@/utils/contants";
 import { ToastContainer } from "react-toastify";
-
 export default function PublicLayout({
   children,
 }: {
@@ -33,4 +32,7 @@ export default function PublicLayout({
       />
     </>
   );
+}
+function RootState(a: unknown, b: unknown): boolean {
+  throw new Error("Function not implemented.");
 }

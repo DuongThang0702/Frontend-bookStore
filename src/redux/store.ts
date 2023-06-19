@@ -3,7 +3,7 @@ import storage from "redux-persist/lib/storage";
 import { persistReducer, persistStore } from "redux-persist";
 import userSlice from "./user/user";
 const commonConfig = {
-  key: "shop/user",
+  key: "BooksStore/user",
   storage,
 };
 const userConfig = {

@@ -1,5 +1,5 @@
 import axios from "axios";
-
+import { LocalStorage } from "@/utils/IConfig";
 const axiosClient = axios.create({
   baseURL: process.env.NEXT_PUBLIC_REACT_APP_API_URL,
   headers: {
@@ -8,9 +8,14 @@ const axiosClient = axios.create({
 });
 // Add a request interceptor
 axiosClient.interceptors.request.use(
-  function (config) {
-    // Do something before request is sent
-    return config;
+  function (config: any) {
+    let localStorage = window.localStorage.getItem("persist:BooksStore/user");
+    if (localStorage && typeof localStorage === "string") {
+      const data: LocalStorage = JSON.parse(localStorage);
+      const access_token = JSON.parse(data?.access_token);
+      config.headers = { authorization: access_token };
+      return config;
+    } else return config;
   },
   function (error) {
     // Do something with request error

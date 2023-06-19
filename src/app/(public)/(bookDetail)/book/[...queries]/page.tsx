@@ -1,15 +1,14 @@
 "use client";
 import { IBook } from "@/utils/IBook";
 import { FC, useEffect, useState } from "react";
+import { apiGetBookById } from "@/api";
 
 interface pageProps {
-  params: { book: [title: string, bid: string] };
+  params: { queries: [slug: string, bid: string] };
 }
 
 const Page: FC<pageProps> = ({ params }) => {
-  console.log(params.book);
-
-  // const [books, setBooks] = useState<BookData | null>(null);
+  // const [books, setBooks] = useState<IBook | null>(null);
   // const [error, setError] = useState<boolean>(false);
   // const fetchData = async () => {
   //   await BookApi.apiGetBookById({

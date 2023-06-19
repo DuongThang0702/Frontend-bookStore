@@ -9,3 +9,4 @@ export { default as BestSeller } from "./bookFrame/BestSeller";
 export { default as BookFrame } from "./bookFrame/";
 export { default as Footer } from "./Footer";
 export { default as InputField } from "./InputField";
+export { default as SliderCustom } from "./SliderCustom";

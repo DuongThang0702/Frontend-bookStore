@@ -72,3 +72,8 @@ export const footerLink = [
   { id: 5, path: path.TERMS_OF_USE, value: "Returns and Refund Policy" },
   { id: 6, path: path.FAQ, value: "Indiebound - Bookshop Changeover FAQ" },
 ];
+
+export const submenuUser = [
+  { id: 1, value: "Profile", path: path.PROFILE },
+  { id: 2, value: "Logout", path: path.LOGOUT },
+];

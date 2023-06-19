@@ -1,15 +1,11 @@
+import { BookProps } from "@/utils/IBook";
+import path from "@/utils/path";
+import Link from "next/link";
 import { FC } from "react";
 import Slider from "react-slick";
-import Link from "next/link";
 import Image from "next/image";
-import { IBook } from "../../utils/IBook";
-import path from "@/utils/path";
 
-interface bookProps {
-  book: IBook[] | null;
-}
-
-const Book: FC<bookProps> = ({ book }) => {
+const Page: FC<BookProps> = ({ book }) => {
   const settings = {
     dots: false,
     infinite: true,
@@ -40,4 +36,4 @@ const Book: FC<bookProps> = ({ book }) => {
   );
 };
 
-export default Book;
+export default Page;
