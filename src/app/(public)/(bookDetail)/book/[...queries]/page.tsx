@@ -6,7 +6,7 @@ import Image from "next/image";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import icon from "@/utils/icon";
 import Button from "@/components/button";
-import { Book, ListBook, SliderCustom } from "@/components";
+import { Book, ListBook } from "@/components";
 interface pageProps {
   params: { queries: [slug: string, bid: string] };
 }
@@ -16,13 +16,10 @@ const Page: FC<pageProps> = ({ params }) => {
   const [categories, setCategories] = useState<IBook[] | null>(null);
   const [error, setError] = useState<boolean>(false);
   const [peding, setPeding] = useState<IBook[] | null>(null);
-  let listCategories: string;
+
   const fetchData = async () => {
-    const response = await apiGetBookById("64858a2df3d9b7d3e0d7048d");
+    const response = await apiGetBookById(params.queries[1]);
     if (response.data.error === 0) setBook(response.data.bookData);
-    listCategories = response.data.bookData.category.map(
-      (cate: string) => cate
-    );
   };
 
   const fetchBookByCategories = async () => {
@@ -30,7 +27,6 @@ const Page: FC<pageProps> = ({ params }) => {
       limit: 10,
       page: Math.round(Math.random() * 10),
     });
-
     if (response.data.error === 0) setCategories(response.data.books);
   };
 

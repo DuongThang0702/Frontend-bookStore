@@ -29,7 +29,7 @@ const path = {
   BUSINESS: "nonfiction/business",
   AUTOBIOGRAPHY: "nonfiction/autobiography",
   //footer
-  ABOUT: "about",
+  ABOUT: "about-us",
   BECOME_AN_AFFILIATE: "become-an-affiliate",
   CONTACT: "contact",
   TERMS_OF_USE: "terms-of-use",
