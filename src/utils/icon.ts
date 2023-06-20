@@ -1,7 +1,7 @@
 import {
   faCartShopping,
   faMagnifyingGlass,
-  faStar,
+  faStar,faCircleCheck,faCircleXmark
 } from "@fortawesome/free-solid-svg-icons";
 import {
   faFacebook,
@@ -16,7 +16,7 @@ const icon = {
   faFacebook,
   faTwitter,
   faInstagram,
-  faCircleUser,
+  faCircleUser,faCircleCheck,faCircleXmark
 };
 
 export default icon;

@@ -7,5 +7,5 @@ export const apiGetBooks = (params?: object) =>
     params,
   });
 
-export const apiGetBookById = (params: { bid: string }) =>
-  axiosClient({ url: `/book/book-id/${params.bid}`, method: "get", params });
+export const apiGetBookById = (params: string) =>
+  axiosClient({ url: `/book/book-id/${params}`, method: "get" });

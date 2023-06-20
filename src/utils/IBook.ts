@@ -1,7 +1,9 @@
+import { StaticImageData } from "next/image";
+
 export interface ImageBook {
   _id: string;
-  filename: string;
-  path: string;
+  filename?: string;
+  path: string | StaticImageData;
 }
 
 export interface ratings {
@@ -14,6 +16,7 @@ export interface ratings {
 export interface IBook {
   _id: string;
   title: string;
+  category: string[]
   slug: string;
   price: number;
   sold: number;

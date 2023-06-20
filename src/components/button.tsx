@@ -16,7 +16,7 @@ const Button: FC<buttonProps> = ({ name, style, status, hanleOnClick }) => {
         status
           ? style
             ? style
-            : "bg-red px-10 py-3 text-white font-main text-2xl rounded-full my-8 uppercase font-bold"
+            : "bg-red border-2 border-red px-10 py-3 text-white font-main text-2xl rounded-full my-8 uppercase font-bold"
           : "bg-[#ccc] px-10 py-3 text-white font-main text-2xl rounded-full my-8 uppercase font-bold"
       }
       onClick={() => {
