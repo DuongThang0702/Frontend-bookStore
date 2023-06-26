@@ -1,7 +1,7 @@
 "use client";
 import { apiResetPassword } from "@/api";
 import { InputField } from "@/components";
-import Button from "@/components/button";
+import Button from "@/components/form/button";
 import { ResetPassword } from "@/utils/IUser";
 import path from "@/utils/path";
 import { useRouter } from "next/navigation";

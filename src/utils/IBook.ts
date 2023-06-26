@@ -16,7 +16,7 @@ export interface ratings {
 export interface IBook {
   _id: string;
   title: string;
-  category: string[]
+  category: string[];
   slug: string;
   price: number;
   sold: number;
@@ -30,7 +30,8 @@ export interface IBook {
 }
 
 export interface BookProps {
-  book: IBook[] | null;
+  books: IBook[];
+  count: number;
 }
 
 export interface ResponseBooks {

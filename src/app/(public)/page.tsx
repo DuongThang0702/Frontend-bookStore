@@ -2,7 +2,7 @@
 import { Banner } from "@/components";
 import { FC } from "react";
 import { BookFrame } from "@/components";
-import FooterMiddle from "@/components/FooterMiddle";
+import FooterMiddle from "@/components/layout/FooterMiddle";
 
 const Home: FC = ({}) => {
   return (

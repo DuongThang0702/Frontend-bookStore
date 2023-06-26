@@ -6,7 +6,7 @@ import { IBook } from "../../utils/IBook";
 import path from "@/utils/path";
 
 interface bookProps {
-  book: IBook[] | null;
+  book?: IBook[] | null;
 }
 
 const Book: FC<bookProps> = ({ book }) => {
@@ -24,7 +24,9 @@ const Book: FC<bookProps> = ({ book }) => {
         {book?.map((el) => {
           return (
             <div key={el._id}>
-              <Link href={`/${path.DETAIL_BOOK}/${el.slug}/${el._id}`}>
+              <Link
+                href={`/${path.DETAIL_BOOK}/${el.slug}/${el._id}/${el.category[0]}`}
+              >
                 <Image
                   src={el.image.path}
                   width={140}

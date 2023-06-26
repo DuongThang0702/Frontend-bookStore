@@ -2,7 +2,7 @@ import { apiGetBooks } from "@/api/";
 import { AxiosError, AxiosResponse } from "axios";
 import { FC, useEffect, useState } from "react";
 import { Book, ListBook } from "@/components/";
-import Loading from "../Loading";
+import Loading from "../effect/Loading";
 import { IBook } from "@/utils/IBook";
 
 const BestSeller: FC = ({}) => {
@@ -29,7 +29,7 @@ const BestSeller: FC = ({}) => {
 
   return (
     <>
-      <ListBook title={"Best Seller"} limit={limit} />
+      <ListBook title={"Best Seller"} />
       {pending ? (
         <Loading />
       ) : error ? (

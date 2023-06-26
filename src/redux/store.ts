@@ -2,6 +2,8 @@ import { configureStore } from "@reduxjs/toolkit";
 import storage from "redux-persist/lib/storage";
 import { persistReducer, persistStore } from "redux-persist";
 import userSlice from "./user/user";
+import appSlice from "./app/app";
+
 const commonConfig = {
   key: "BooksStore/user",
   storage,
@@ -13,7 +15,8 @@ const userConfig = {
 
 export const store = configureStore({
   reducer: {
-    user: persistReducer(userConfig, userSlice),
+    app: appSlice,
+    user: persistReducer<any>(userConfig, userSlice),
   },
   middleware: (getDefaultMiddleware) =>
     getDefaultMiddleware({

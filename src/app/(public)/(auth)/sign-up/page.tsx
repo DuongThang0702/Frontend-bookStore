@@ -4,7 +4,7 @@ import Image from "next/image";
 import { Register } from "@/utils/IUser";
 import { InputField } from "@/components";
 import { apiRegister } from "@/api";
-import Button from "@/components/button";
+import Button from "@/components/form/button";
 import Swal from "sweetalert2";
 import { useRouter } from "next/navigation";
 import path from "@/utils/path";
@@ -26,7 +26,6 @@ const Page: FC<pageProps> = ({}) => {
   }, [payload]);
   const handleSubmit = useCallback(async () => {
     const response = await apiRegister(payload);
-
     if (response.data.error === 0) {
       Swal.fire("Congralution", response.data.mes, "success").then(() =>
         router.push(`/${path.LOGIN}`)

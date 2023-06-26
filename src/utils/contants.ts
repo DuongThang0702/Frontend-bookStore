@@ -25,9 +25,10 @@ export const navigationLink = [
 
   {
     id: 4,
-    value: "Fiction",
+    value: "Books",
     path: path.FICTION,
     subMenu: [
+      { id: 18, value: "Fiction", path: path.FICTION },
       { id: 5, value: "Poetry", path: path.POETRY },
       { id: 6, value: "Fantasy", path: path.FANTASY },
       { id: 7, value: "HistoricalFiction", path: path.historicalFiction },
@@ -37,7 +38,7 @@ export const navigationLink = [
   {
     id: 8,
     value: "Nonfiction",
-    path: path.NONFICTION,
+    path: path.PHILOSOPHY,
     subMenu: [
       { id: 9, value: "Travel", path: path.TRAVEL },
       { id: 10, value: "Mystery", path: path.MYSTERY },

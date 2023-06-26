@@ -1,8 +1,8 @@
 import { FC, useEffect, useState } from "react";
 import { IBook } from "../../utils/IBook";
 import { apiGetBooks } from "@/api";
-import ListBook from "../ListBook";
-import Loading from "../Loading";
+import ListBook from "./ListBook";
+import Loading from "../effect/Loading";
 import Book from "./Book";
 
 const NewBook: FC = ({}) => {

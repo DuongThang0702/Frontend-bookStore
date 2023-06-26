@@ -12,6 +12,7 @@ const initialState = {
   access_token: null as string | null,
   current: null as UserCurrent | null,
   isLoading: false,
+  mes: "",
 };
 
 export const userSlice = createSlice({
@@ -26,6 +27,9 @@ export const userSlice = createSlice({
       state.access_token = null;
       state.isLoggedIn = false;
     },
+    clearMes: (state) => {
+      state.mes = "";
+    },
   },
   extraReducers: (builder) => {
     builder.addCase(actions.getUserCurrent.pending, (state) => {
@@ -33,15 +37,19 @@ export const userSlice = createSlice({
     });
     builder.addCase(actions.getUserCurrent.fulfilled, (state, action) => {
       state.isLoading = false;
+      state.isLoggedIn = true;
       state.current = action.payload;
     });
     builder.addCase(actions.getUserCurrent.rejected, (state) => {
       state.isLoading = false;
       state.current = null;
+      state.isLoggedIn = false;
+      state.access_token = null;
+      state.mes = "Login session has expired, please login again";
     });
   },
 });
 
-export const { login, logout } = userSlice.actions;
+export const { login, logout, clearMes } = userSlice.actions;
 
 export default userSlice.reducer;

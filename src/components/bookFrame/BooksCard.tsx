@@ -5,16 +5,16 @@ import Link from "next/link";
 import path from "@/utils/path";
 
 interface BooksCardProps {
-  book: Array<IBook> | null;
+  book?: Array<IBook> | null;
 }
 
 const BooksCard: FC<BooksCardProps> = ({ book }) => {
   return (
-    <div className="w-main grid grid-cols-4 gap-4">
+    <div className="w-main grid grid-cols-4 gap-[2rem]">
       {book?.map((el) => (
         <Link
           key={el._id}
-          href={`/${path.DETAIL_BOOK}/${el.slug}/${el._id}`}
+          href={`/${path.DETAIL_BOOK}/${el.slug}/${el._id}/${el.category[0]}`}
           className="flex"
         >
           <Image

@@ -1,7 +1,7 @@
 "use client";
 import { apiForgotPassword } from "@/api";
 import { InputField } from "@/components";
-import Button from "@/components/button";
+import Button from "@/components/form/button";
 import { ForgotPassword } from "@/utils/IUser";
 import { FC, useCallback, useEffect, useState } from "react";
 import { toast } from "react-toastify";

@@ -1,8 +1,8 @@
 import { FC, useEffect, useState } from "react";
-import ListBook from "../ListBook";
+import ListBook from "./ListBook";
 import { IBook } from "../../utils/IBook";
 import { apiGetBooks } from "@/api";
-import Loading from "../Loading";
+import Loading from "../effect/Loading";
 import Book from "./Book";
 import BooksCard from "./BooksCard";
 

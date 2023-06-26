@@ -3,7 +3,7 @@ import Link from "next/link";
 import { FC, useCallback, useEffect, useState } from "react";
 import path from "@/utils/path";
 import { InputField } from "@/components/";
-import Button from "@/components/button";
+import Button from "@/components/form/button";
 import { IUser } from "@/utils/IUser";
 import { useRouter } from "next/navigation";
 import { apiLogin } from "@/api";
