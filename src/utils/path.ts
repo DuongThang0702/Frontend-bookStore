@@ -9,25 +9,25 @@ const path = {
   //navigation
   HOME: "/",
   DETAIL_BOOK: "book", // book/:slug/:bid/:title
-  NEWBOOKS: "list/new-books",
-  BESTSELLER: "list/best-seller",
+  NEWBOOKS: "books/list/new-books",
   GIFTCARD: "service/gift-card",
   BLOG: "service/blog",
   PRIDE_MONTH: "pride-month",
-  YA: "ya",
   //navigation sort by category
+  YA: "books/category/fiction?page=1",
+  BESTSELLER: "books/category/best-seller?page=1",
   //fiction
-  FICTION: "books/category/fiction",
-  FANTASY: "books/category/fantasy",
-  POETRY: "books/category/poetry",
-  historicalFiction: "books/category/historicalfiction",
+  FICTION: "books/category/fiction?page=1",
+  FANTASY: "books/category/fantasy?page=1",
+  POETRY: "books/category/poetry?page=1",
+  historicalFiction: "books/category/historicalfiction?page=1",
   //nonfiction
   NONFICTION: "nonfiction",
-  TRAVEL: "books/category/travel",
-  MYSTERY: "books/category/mystery",
-  PHILOSOPHY: "books/category/philosophy",
-  BUSINESS: "books/category/business",
-  AUTOBIOGRAPHY: "books/category/autobiography",
+  TRAVEL: "books/category/travel?page=1",
+  MYSTERY: "books/category/mystery?page=1",
+  PHILOSOPHY: "books/category/philosophy?page=1",
+  BUSINESS: "books/category/business?page=1",
+  AUTOBIOGRAPHY: "books/category/autobiography?page=1",
   //footer
   ABOUT: "about-us",
   BECOME_AN_AFFILIATE: "become-an-affiliate",

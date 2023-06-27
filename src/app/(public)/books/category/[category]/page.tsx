@@ -25,31 +25,57 @@ const Page: FC<PageProps> = ({ params, searchParams }) => {
   const page: string = searchParams.page || "1";
 
   const fetchBookByCategory = async () => {
-    setPending(true);
-    const getBooksByCategory = await apiGetBooks({
-      category: params.category,
-      limit: 12,
-      page,
-    });
-    const getBooksByCategoryAndBestSeller = await apiGetBooks({
-      category: params.category,
-      sort: "-sold",
-      limit: 8,
-    });
-    const getNewBooksByCategory = await apiGetBooks({
-      category: params.category,
-      sort: "createdAt",
-    });
-    Promise.all([
-      getBooksByCategory,
-      getBooksByCategoryAndBestSeller,
-      getNewBooksByCategory,
-    ]).then((rs) => {
-      setPending(false);
-      setBooks(rs[0].data);
-      setBestSeller(rs[1].data);
-      setNewBooks(rs[2].data);
-    });
+    if (params.category === "best-seller") {
+      setPending(true);
+      const getBooksByCategory = await apiGetBooks({
+        sort: "-createdAt",
+        limit: 12,
+        page,
+      });
+      const getBooksByCategoryAndBestSeller = await apiGetBooks({
+        sort: "-sold -createdAt",
+        limit: 8,
+      });
+      const getNewBooksByCategory = await apiGetBooks({
+        sort: "-createdAt",
+      });
+      Promise.all([
+        getBooksByCategory,
+        getBooksByCategoryAndBestSeller,
+        getNewBooksByCategory,
+      ]).then((rs) => {
+        setPending(false);
+        setBooks(rs[0].data);
+        setBestSeller(rs[1].data);
+        setNewBooks(rs[2].data);
+      });
+    } else {
+      setPending(true);
+      const getBooksByCategory = await apiGetBooks({
+        category: params.category,
+        limit: 12,
+        page,
+      });
+      const getBooksByCategoryAndBestSeller = await apiGetBooks({
+        category: params.category,
+        sort: "-sold",
+        limit: 8,
+      });
+      const getNewBooksByCategory = await apiGetBooks({
+        category: params.category,
+        sort: "createdAt",
+      });
+      Promise.all([
+        getBooksByCategory,
+        getBooksByCategoryAndBestSeller,
+        getNewBooksByCategory,
+      ]).then((rs) => {
+        setPending(false);
+        setBooks(rs[0].data);
+        setBestSeller(rs[1].data);
+        setNewBooks(rs[2].data);
+      });
+    }
   };
 
   useEffect(() => {

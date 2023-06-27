@@ -28,6 +28,7 @@ module.exports = {
       backgroundColor: {
         purple: "#6B0DDE",
         red: "#de2454",
+        nude: '#FFF6EF'
       },
       boxShadow: {
         menu: "rgba(0, 0, 0, 0.35) 0px 5px 15px",
