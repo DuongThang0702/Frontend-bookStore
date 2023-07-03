@@ -10,6 +10,7 @@ import { apiLogin } from "@/api";
 import Swal from "sweetalert2";
 import { useDispatch } from "react-redux";
 import { login } from "@/redux/user/user";
+import Head from "next/head";
 
 const PageLogin: FC = ({}) => {
   const dispatch = useDispatch();

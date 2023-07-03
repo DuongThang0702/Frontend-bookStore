@@ -26,6 +26,7 @@ export const userSlice = createSlice({
     logout: (state) => {
       state.access_token = null;
       state.isLoggedIn = false;
+      state.current = null;
     },
     clearMes: (state) => {
       state.mes = "";

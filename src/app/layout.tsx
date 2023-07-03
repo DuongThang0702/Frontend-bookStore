@@ -5,9 +5,8 @@ import "slick-carousel/slick/slick-theme.css";
 import "react-toastify/dist/ReactToastify.css";
 import { Providers } from "../redux/provider";
 import ProgressBar from "next-nprogress-bar";
-export const metadata = {
-  title: "BooksShop",
-};
+import Head from "next/head";
+
 export default function RootLayout({
   children,
 }: {
@@ -15,6 +14,7 @@ export default function RootLayout({
 }) {
   return (
     <html lang="en">
+      <head><title>BooksStore</title></head>
          <body suppressHydrationWarning={true}>
         <Providers>{children}</Providers>
         <ProgressBar
