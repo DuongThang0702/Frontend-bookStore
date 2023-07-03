@@ -10,7 +10,7 @@ const ListBook: FC<ListBookProps> = ({ title }) => {
     <>
       <div className="pt-20">
         <div className="flex justify-between mb-12">
-          <h1 className="text-[2.8rem] font-read font-semibold font-header tracking-wider">
+          <h1 className="text-[2.8rem]  font-semibold font-header tracking-wider">
             {title}
           </h1>
           <Link

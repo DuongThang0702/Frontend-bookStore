@@ -12,12 +12,14 @@ module.exports = {
         main: ["Poppins", "sans-serif"],
         header: ["IBM Plex Sans", "sans-serif"],
         read: ["Roboto Slab", "serif"],
+        vollkorm: ["Vollkorn", "serif"],
       },
       colors: {
         purple: "#6B0DDE",
         darkPurple: "#59429a",
         link: "#7f48d9",
         red: "#de2454",
+        palePurple: "#9F8BC2",
       },
       fontSize: {
         main: "2rem",
@@ -28,7 +30,8 @@ module.exports = {
       backgroundColor: {
         purple: "#6B0DDE",
         red: "#de2454",
-        nude: '#FFF6EF'
+        nude: "#fff6ef",
+        gray: "#EEEEEE",
       },
       boxShadow: {
         menu: "rgba(0, 0, 0, 0.35) 0px 5px 15px",

@@ -1,6 +1,6 @@
 "use client";
 import { FC, useState, CSSProperties, useEffect } from "react";
-import { BeatLoader } from "react-spinners";
+import { PacmanLoader } from "react-spinners";
 interface LoadingProps {
   load?: boolean;
 }
@@ -16,20 +16,17 @@ const Loading: FC<LoadingProps> = ({}) => {
     setLoading(true);
   }, []);
   return (
-    <>
-      {/* <div className="sweet-loading">
-        <BeatLoader
+    <div className="flex justify-center items-center h-screen">
+      <div className="sweet-loading p-20">
+        <PacmanLoader
           loading={Loading}
           cssOverride={override}
-          color={"#36d7b7"}
+          color={"#59429a"}
           aria-label="Loading Spinner"
           data-testid="loader"
         />
-      </div> */}
-      <div>
-        <h1>Loading .....</h1>
       </div>
-    </>
+    </div>
   );
 };
 

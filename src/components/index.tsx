@@ -13,3 +13,4 @@ export { default as BookCard } from "./bookFrame/BooksCard";
 export { default as Button } from "./form/button";
 export { default as Pagination } from "./paginationPageBooks/pagination";
 export { default as Loading } from "./effect/Loading";
+export { default as Accordion } from "./about-us/accordion";

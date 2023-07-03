@@ -1,3 +1,4 @@
+"use client";
 import { FC, useState, CSSProperties, useEffect, memo } from "react";
 import { BeatLoader } from "react-spinners";
 
@@ -17,7 +18,7 @@ const Loading: FC = ({}) => {
         <BeatLoader
           loading={Loading}
           cssOverride={override}
-          color={"#36d7b7"}
+          color={"#59429a"}
           aria-label="Loading Spinner"
           data-testid="loader"
         />

@@ -105,7 +105,9 @@ const Page: FC<PageProps> = ({ params, searchParams }) => {
         )}
         <div className="grid grid-cols-4 gap-20 mt-20">
           {pending ? (
-            <Loading />
+            <div className="w-main mx-auto p-20">
+              <Loading />
+            </div>
           ) : (
             books?.books?.map((el) => (
               <div key={el._id}>

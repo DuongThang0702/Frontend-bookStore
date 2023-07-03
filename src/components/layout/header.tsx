@@ -1,3 +1,4 @@
+"use client";
 import path from "@/utils/path";
 import Image from "next/image";
 import Link from "next/link";

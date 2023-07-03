@@ -33,7 +33,7 @@ const Page: FC<PageProps> = ({ children }) => {
         Number(children)
           ? `cursor-pointer text-[1.6rem] ${
               parseInt(searchParams.get("page") as string) === children
-                ? `text-purple`
+                ? `text-purple font-bold`
                 : ``
             }`
           : "text-[1.6rem]"

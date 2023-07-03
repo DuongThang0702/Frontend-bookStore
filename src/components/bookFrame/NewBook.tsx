@@ -1,3 +1,4 @@
+"use client";
 import { FC, useEffect, useState } from "react";
 import { IBook } from "../../utils/IBook";
 import { apiGetBooks } from "@/api";
@@ -26,7 +27,7 @@ const NewBook: FC = ({}) => {
 
   return (
     <>
-      <ListBook title={"New Books"} limit={limit} />
+      <ListBook title={"New Books"} />
       {pending ? (
         <Loading />
       ) : error ? (

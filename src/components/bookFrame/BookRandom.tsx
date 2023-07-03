@@ -1,3 +1,4 @@
+"use client";
 import { FC, useEffect, useState } from "react";
 import ListBook from "./ListBook";
 import { IBook } from "../../utils/IBook";

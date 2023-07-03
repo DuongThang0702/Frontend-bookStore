@@ -1,5 +1,5 @@
 const path = {
-  PUBLIC: "*",
+  //Public
   //user
   LOGIN: "login",
   SIGNUP: "sign-up",
@@ -16,27 +16,35 @@ const path = {
   //navigation sort by category
   YA: "books/category/fiction?page=1",
   BESTSELLER: "books/category/best-seller?page=1",
-  //fiction
+  //submenu fiction
   FICTION: "books/category/fiction?page=1",
   FANTASY: "books/category/fantasy?page=1",
   POETRY: "books/category/poetry?page=1",
   historicalFiction: "books/category/historicalfiction?page=1",
-  //nonfiction
+  //submenu nonfiction
   NONFICTION: "nonfiction",
   TRAVEL: "books/category/travel?page=1",
   MYSTERY: "books/category/mystery?page=1",
   PHILOSOPHY: "books/category/philosophy?page=1",
   BUSINESS: "books/category/business?page=1",
   AUTOBIOGRAPHY: "books/category/autobiography?page=1",
-  //footer
+  //footer homepage
   ABOUT: "about-us",
   BECOME_AN_AFFILIATE: "become-an-affiliate",
   CONTACT: "contact",
   TERMS_OF_USE: "terms-of-use",
   FAQ: "Indiebound-Bookshop-Changeover-FAQ",
-
-  //login
   PRIVATE_NOTICE: "private-notice",
+
+  //Admin
+  ADMIN: "admin",
+  DASHBOARD: "dashboard",
+  CREATE_BOOK: "create-books",
+  MANAGE_USER: "manage-user",
+  MANAGE_ORDER: "manage-order",
+  //Member
+  MEMBER: "member",
+  PERSONAL: "personal",
 };
 
 export default path;

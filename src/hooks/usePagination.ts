@@ -14,6 +14,8 @@ const usePagination = (
     const pageSize: number =
       parseInt(process.env.NEXT_PUBLIC_LIMIT as string) || 12;
     const paginationCount: number = Math.ceil(totalBooksCount / pageSize);
+    // first, last, current, 2*dots = 5
+    // totalpage = 5 + siblingCount
     const totalPaginationItem: number = siblingCount + 5;
 
     if (paginationCount <= totalPaginationItem)
@@ -22,7 +24,6 @@ const usePagination = (
     const isShowLeft: boolean = currentPage - siblingCount > 2;
     const isShowRight: boolean =
       currentPage + siblingCount < paginationCount - 1;
-
     if (isShowLeft && !isShowRight) {
       const rightStart = paginationCount - 4;
       const rightRange = generateRange(rightStart, paginationCount);
@@ -30,7 +31,7 @@ const usePagination = (
     }
 
     if (!isShowLeft && isShowRight) {
-      const leftEnd = generateRange(1, 5);
+      const leftEnd = generateRange(1, 6);
       return [...leftEnd, "...", paginationCount];
     }
     const siblingLeft: number = Math.max(currentPage - siblingCount, 1);
@@ -49,9 +50,6 @@ const usePagination = (
 };
 
 export default usePagination;
-
-// first, last, current, 2*dots = 5
-// totalpage = 5 + siblingCount
 
 /*
     case 1: [1,2,3,4,5,6]

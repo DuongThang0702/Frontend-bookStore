@@ -1,5 +1,12 @@
 import path from "./path";
 
+export const navigationAboutPage = [
+  { id: 1, value: "Gift Cards", path: path.GIFTCARD },
+  { id: 2, value: "Best Seller", path: path.BESTSELLER },
+  { id: 3, value: "New Books", path: path.NEWBOOKS },
+  { id: 4, value: "Deals", path: path.BESTSELLER },
+];
+
 export const navigationLink = [
   {
     id: 18,

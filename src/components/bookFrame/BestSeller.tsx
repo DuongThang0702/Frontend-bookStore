@@ -1,3 +1,4 @@
+"use client";
 import { apiGetBooks } from "@/api/";
 import { AxiosError, AxiosResponse } from "axios";
 import { FC, useEffect, useState } from "react";
