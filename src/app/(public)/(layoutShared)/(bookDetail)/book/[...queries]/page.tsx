@@ -1,12 +1,12 @@
 "use client";
-import { IBook } from "@/utils/IBook";
+import { BookProps, IBook } from "@/utils/IBook";
 import { FC, useEffect, useState } from "react";
 import { apiGetBookById, apiGetBooks } from "@/api";
 import Image from "next/image";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import icon from "@/utils/icon";
 import Button from "@/components/form/button";
-import { Book, ListBook } from "@/components";
+import { CustomSlider, TitleBook } from "@/components";
 import Loading from "@/components/effect/Loading";
 
 interface pageProps {
@@ -15,18 +15,19 @@ interface pageProps {
 
 const Page: FC<pageProps> = ({ params }) => {
   const [book, setBook] = useState<IBook | null>(null);
-  const [relative, setRelative] = useState<IBook[] | null>(null);
+  const [relative, setRelative] = useState<BookProps | null>(null);
   const [error, setError] = useState<boolean>(false);
   const [pending, setPending] = useState<boolean>(false);
 
   const fetchData = async () => {
     setPending(true);
-    await apiGetBookById(params.queries[1])
-      .then((rs) => {
+    await apiGetBookById(params.queries[1]).then((rs) => {
+      if (rs.data.error === 0) {
         setBook(rs.data.bookData);
         setPending(false);
-      })
-      .catch((err) => setError(true));
+        setError(false);
+      } else setError(true);
+    });
   };
 
   const fetchBookByCategories = async () => {
@@ -35,12 +36,13 @@ const Page: FC<pageProps> = ({ params }) => {
       limit: 10,
       page: Math.round(Math.random() * 10),
       category: params.queries[2],
-    })
-      .then((rs) => {
-        setRelative(rs.data.books);
+    }).then((rs) => {
+      if (rs.data.error === 0) {
+        setRelative(rs.data);
         setPending(false);
-      })
-      .catch((err) => setError(true));
+        setError(false);
+      } else setError(true);
+    });
   };
 
   useEffect(() => {
@@ -133,13 +135,15 @@ const Page: FC<pageProps> = ({ params }) => {
                 </div>
               </div>
               <div className="mt-12">
-                <ListBook title="Maybe You Will Like" />
+                <TitleBook title="Maybe You Will Like" />
                 {pending ? (
                   <Loading />
                 ) : error ? (
                   <p>Something went wrong !</p>
                 ) : (
-                  <Book book={relative} />
+                  <>
+                    <CustomSlider books={relative?.books} />
+                  </>
                 )}
               </div>
             </>

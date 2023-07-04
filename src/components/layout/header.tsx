@@ -2,15 +2,13 @@
 import path from "@/utils/path";
 import Image from "next/image";
 import Link from "next/link";
-import { FC, useState, MouseEvent } from "react";
+import { FC, useState, useEffect } from "react";
 import icon from "@/utils/icon";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { useDispatch, useSelector } from "react-redux";
-import { useEffect } from "react";
 import { RootState, AppDispatch } from "@/redux/store";
 import { getUserCurrent } from "@/redux/user/asyncAction";
-import { logout } from "@/redux/user/user";
-import { clearMes } from "@/redux/user/user";
+import { logout, clearMes } from "@/redux/user/user";
 import { apiLogout } from "@/api";
 import Swal from "sweetalert2";
 import { useRouter } from "next/navigation";
@@ -27,8 +25,7 @@ const Header: FC = ({}) => {
       if (isLoggedIn) dispatch(getUserCurrent());
     }, 300);
   }, [isLoggedIn, dispatch]);
-  const hanleShowMenuUser = (e: MouseEvent<HTMLDivElement>) => {
-    e.stopPropagation();
+  const hanleShowMenuUser = () => {
     setIsShow((prev) => !prev);
   };
 
@@ -88,7 +85,7 @@ const Header: FC = ({}) => {
               {isShow && (
                 <div className="absolute top-[3rem] right-[-7rem] z-10 bg-[white] shadow-menu">
                   <Link
-                    href={"#"}
+                    href={`/${path.MEMBER}/${path.PERSONAL}`}
                     className="text-2xl min-w-[20rem] block font-header 
                     font-light opacity-80 tracking-wider p-8 mr-2 hover:text-purple"
                   >

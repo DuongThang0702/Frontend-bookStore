@@ -2,14 +2,10 @@ import { FC } from "react";
 import Slider from "react-slick";
 import Link from "next/link";
 import Image from "next/image";
-import { IBook } from "../../utils/IBook";
+import { BookProps, IBook } from "@/utils/IBook";
 import path from "@/utils/path";
 
-interface bookProps {
-  book?: IBook[] | null;
-}
-
-const Book: FC<bookProps> = ({ book }) => {
+const Book: FC<BookProps> = ({ books }) => {
   const settings = {
     dots: false,
     infinite: true,
@@ -21,7 +17,7 @@ const Book: FC<bookProps> = ({ book }) => {
   return (
     <div className="text-center relative">
       <Slider {...settings}>
-        {book?.map((el) => {
+        {books?.map((el) => {
           return (
             <div key={el._id}>
               <Link

@@ -30,8 +30,8 @@ export interface IBook {
 }
 
 export interface BookProps {
-  books: IBook[];
-  count: number;
+  books?: IBook[];
+  count?: number;
 }
 
 export interface ResponseBooks {

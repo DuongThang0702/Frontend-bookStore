@@ -5,13 +5,13 @@ import "slick-carousel/slick/slick-theme.css";
 import "react-toastify/dist/ReactToastify.css";
 import { Providers } from "../redux/provider";
 import ProgressBar from "next-nprogress-bar";
-import Head from "next/head";
 
 export default function RootLayout({
   children,
 }: {
   children: React.ReactNode;
 }) {
+  
   return (
     <html lang="en">
       <head><title>BooksStore</title></head>
