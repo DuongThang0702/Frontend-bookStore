@@ -2,15 +2,19 @@
 import { FC, useCallback, useEffect, useState } from "react";
 import Image from "next/image";
 import { Register } from "@/utils/IUser";
-import { InputField } from "@/components";
+import { InputField, LoadingWhenChangePage } from "@/components";
 import { apiRegister } from "@/api";
 import Button from "@/components/form/button";
 import Swal from "sweetalert2";
 import { useRouter } from "next/navigation";
 import path from "@/utils/path";
+import { useDispatch, useSelector } from "react-redux";
+import { showModel } from "@/redux/app/app";
+import { AppDispatch, RootState } from "@/redux/store";
 interface pageProps {}
 
 const Page: FC<pageProps> = ({}) => {
+  const dispatch = useDispatch<AppDispatch>();
   const router = useRouter();
   const [isValid, setIsValid] = useState<boolean>(false);
   const [payload, setPayload] = useState<Register>({
@@ -19,17 +23,22 @@ const Page: FC<pageProps> = ({}) => {
     email: "",
     password: "",
   });
+
   useEffect(() => {
     if (payload !== null) {
       setIsValid(Object.values(payload).every((value) => value !== ""));
     }
   }, [payload]);
   const handleSubmit = useCallback(async () => {
+    dispatch(
+      showModel({ isShowModel: true, modelChildren: <LoadingWhenChangePage /> })
+    );
     const response = await apiRegister(payload);
     if (response.data.error === 0) {
-      Swal.fire("Congralution", response.data.mes, "success").then(() =>
-        router.push(`/${path.LOGIN}`)
-      );
+      dispatch(showModel({ isShowModel: false, modelChildren: null }));
+      Swal.fire("Congralution", response.data.mes, "success").then(() => {
+        router.push(`/${path.LOGIN}`);
+      });
     } else {
       Swal.fire("Oops!", response.data.mes, "error");
     }

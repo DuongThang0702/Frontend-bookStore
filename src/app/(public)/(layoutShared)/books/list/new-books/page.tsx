@@ -76,7 +76,7 @@ const Page: FC = () => {
               {peding ? (
                 <Loading />
               ) : (
-                newBooks?.books.map((el) => (
+                newBooks?.books?.map((el) => (
                   <div className="p-[3.2rem] border-b flex" key={el._id}>
                     <Link href={`book/${el.slug}/${el._id}/${el.title}`}>
                       <Image

@@ -20,6 +20,7 @@ const Header: FC = ({}) => {
   const { isLoggedIn, current, mes } = useSelector(
     (state: RootState) => state.user
   );
+  
   useEffect(() => {
     setTimeout(() => {
       if (isLoggedIn) dispatch(getUserCurrent());
@@ -85,7 +86,7 @@ const Header: FC = ({}) => {
               {isShow && (
                 <div className="absolute top-[3rem] right-[-7rem] z-10 bg-[white] shadow-menu">
                   <Link
-                    href={`/${path.MEMBER}/${path.PERSONAL}`}
+                    href={current.role === 'admin' ? `/${path.ADMIN}/${path.DASHBOARD}` : `/${path.MEMBER}/${path.PERSONAL}`}
                     className="text-2xl min-w-[20rem] block font-header 
                     font-light opacity-80 tracking-wider p-8 mr-2 hover:text-purple"
                   >

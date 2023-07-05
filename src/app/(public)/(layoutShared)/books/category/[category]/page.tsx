@@ -2,7 +2,13 @@
 import { FC, useEffect, useState } from "react";
 import { apiGetBooks } from "@/api";
 import { BookProps } from "@/utils/IBook";
-import { Book, BookCard, Button, ListBook, Loading } from "@/components";
+import {
+  CustomSlider,
+  BookCard,
+  Button,
+  TitleBook,
+  Loading,
+} from "@/components";
 import Image from "next/image";
 import Link from "next/link";
 import path from "@/utils/path";
@@ -92,12 +98,12 @@ const Page: FC<PageProps> = ({ params, searchParams }) => {
         {isShowSlider ? (
           <>
             <div>
-              <ListBook title="Best Seller" />
-              {pending ? <Loading /> : <BookCard book={bestseller?.books} />}
+              <TitleBook title="Best Seller" />
+              {pending ? <Loading /> : <BookCard books={bestseller?.books} />}
             </div>
             <div>
-              <ListBook title="New Books" />
-              {pending ? <Loading /> : <Book book={newBooks?.books} />}
+              <TitleBook title="New Books" />
+              {pending ? <Loading /> : <CustomSlider books={newBooks?.books} />}
             </div>
           </>
         ) : (
@@ -143,7 +149,9 @@ const Page: FC<PageProps> = ({ params, searchParams }) => {
           )}
         </div>
         <div className="text-center">
-          {books && books.count > 12 && <Pagination totalCount={books.count} />}
+          {books && books.count && books.count > 12 && (
+            <Pagination totalCount={books.count} />
+          )}
         </div>
       </div>
     </>

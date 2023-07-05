@@ -1,13 +1,14 @@
 import { createSlice, PayloadAction } from "@reduxjs/toolkit";
+import React from "react";
 
 interface Payload {
-  modelChildren: any;
+  modelChildren: React.ReactElement | null;
   isShowModel: boolean;
 }
 
 const initialState = {
   isShowModel: false,
-  modelChildren: null,
+  modelChildren: null as React.ReactElement | null,
 };
 
 export const appSlice = createSlice({
