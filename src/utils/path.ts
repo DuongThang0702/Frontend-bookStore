@@ -30,7 +30,7 @@ const path = {
   AUTOBIOGRAPHY: "books/category/autobiography?page=1",
   //footer homepage
   ABOUT: "about-us",
-  BECOME_AN_AFFILIATE: "become-an-affiliate",
+  BECOME_AN_AFFILIATE: "service/become-an-affiliate",
   CONTACT: "contact",
   TERMS_OF_USE: "terms-of-use",
   FAQ: "Indiebound-Bookshop-Changeover-FAQ",

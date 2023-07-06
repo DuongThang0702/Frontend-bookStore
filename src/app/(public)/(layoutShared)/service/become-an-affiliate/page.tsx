@@ -1,7 +1,7 @@
 import { FC } from "react";
 
 const Page: FC = ({}) => {
-  return <></>;
+  return <>become</>;
 };
 
 export default Page;
