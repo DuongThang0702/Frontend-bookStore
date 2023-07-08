@@ -1,14 +1,14 @@
 import { FC } from "react";
-import { MenuData } from "./navigation";
 import Link from "next/link";
+import { NavigationLink, SubMenu } from "@/utils/ILayout";
 interface SubMenuProps {
-  item: Array<MenuData>;
+  item?: Array<SubMenu>;
 }
 
 const SubMenu: FC<SubMenuProps> = ({ item }) => {
   return (
     <div className="absolute z-10 bg-[white] shadow-menu">
-      {item.map((el) => {
+      {item?.map((el) => {
         return (
           <div key={el.id}>
             <Link

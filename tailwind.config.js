@@ -32,9 +32,27 @@ module.exports = {
         red: "#de2454",
         nude: "#fff6ef",
         gray: "#EEEEEE",
+        overLay: "rgba(90, 90, 90,0.4)",
       },
       boxShadow: {
         menu: "rgba(0, 0, 0, 0.35) 0px 5px 15px",
+        boxShadowRight: "rgba(0, 0, 0, 0.7)0px 0px 20px",
+      },
+      keyframes: {
+        slideTop: {
+          "0%": {
+            "-webkit-transform": "translateY(4px);",
+            transform: "translateY(4px);",
+          },
+          "100%": {
+            "-webkit-transform": "translateY(0px);",
+            transform: "translateY(0px);",
+          },
+        },
+      },
+      animation: {
+        slideTop:
+          "slideTop 0.5s cubic-bezier(0.250, 0.460, 0.450, 0.940) both;",
       },
     },
   },

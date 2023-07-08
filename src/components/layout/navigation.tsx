@@ -1,15 +1,9 @@
 import { FC } from "react";
 import Menu from "./Menu";
-
-export interface MenuData {
-  id: number;
-  value: string;
-  path: string;
-  subMenu?: Array<MenuData>;
-}
+import { NavigationLink } from "@/utils/ILayout";
 
 interface navigationProps {
-  NavigationData: Array<MenuData>;
+  NavigationData: Array<NavigationLink>;
 }
 
 const navigation: FC<navigationProps> = ({ NavigationData }) => {

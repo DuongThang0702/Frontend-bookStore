@@ -2,15 +2,14 @@
 import { FC, useCallback, useEffect, useState } from "react";
 import Image from "next/image";
 import { Register } from "@/utils/IUser";
-import { InputField, LoadingWhenChangePage } from "@/components";
-import { apiRegister } from "@/api";
-import Button from "@/components/form/button";
+import { InputField } from "@/components";
+import { apiFinalRegister, apiRegister } from "@/api";
+import { Button } from "@/components";
 import Swal from "sweetalert2";
 import { useRouter } from "next/navigation";
 import path from "@/utils/path";
-import { useDispatch, useSelector } from "react-redux";
-import { showModel } from "@/redux/app/app";
-import { AppDispatch, RootState } from "@/redux/store";
+import { useDispatch } from "react-redux";
+import { AppDispatch } from "@/redux/store";
 interface pageProps {}
 
 const Page: FC<pageProps> = ({}) => {
@@ -23,30 +22,81 @@ const Page: FC<pageProps> = ({}) => {
     email: "",
     password: "",
   });
-
+  const [isShowModel, setIsShowModel] = useState<boolean>(true);
+  const [token, setToken] = useState<string>("");
   useEffect(() => {
     if (payload !== null) {
       setIsValid(Object.values(payload).every((value) => value !== ""));
     }
   }, [payload]);
   const handleSubmit = useCallback(async () => {
-    dispatch(
-      showModel({ isShowModel: true, modelChildren: <LoadingWhenChangePage /> })
-    );
     const response = await apiRegister(payload);
     if (response.data.error === 0) {
-      dispatch(showModel({ isShowModel: false, modelChildren: null }));
       Swal.fire("Congralution", response.data.mes, "success").then(() => {
-        router.push(`/${path.LOGIN}`);
+        setIsShowModel(true);
       });
     } else {
       Swal.fire("Oops!", response.data.mes, "error");
     }
   }, [payload]);
 
+  const hanelSendToken = useCallback(async () => {
+    const response = await apiFinalRegister(token);
+
+    if (response.data.error === 0) {
+      Swal.fire("Congralution", "successful authentication", "success").then(
+        () => {
+          router.push(`/${path.LOGIN}`);
+          setIsShowModel(false);
+        }
+      );
+    } else Swal.fire("Oops!", "Invalid Token, please try again", "error");
+  }, [token]);
+
   return (
     <>
-      <div className="w-full bg-[#ccc] p-20">
+      <div className="w-full bg-[#ccc] p-20 relative">
+        {isShowModel && (
+          <>
+            <div className="absolute top-0 left-0 bottom-0 right-0 bg-overLay flex items-center justify-center">
+              <div className="relative">
+                <div
+                  className="text-[1.6rem] top-0 right-0 z-10 absolute font-bold bg-red text-white duration-300 px-4 py-2 m-2 cursor-pointer rounded-md"
+                  onClick={() => setIsShowModel(false)}
+                >
+                  X
+                </div>
+                <div className="bg-white p-20 rounded-md">
+                  <h1 className="text-[1.6rem]">
+                    We sent a code your email, please check your mail and enter
+                  </h1>
+                  <div className="flex flex-col relative mt-8 group">
+                    {token.trim() !== "" && (
+                      <label
+                        htmlFor="Token-register"
+                        className="text-[1.2rem] absolute left-[1.7rem] z-10 animate-slideTop  top-[-1rem] bg-white select-none pointer-events-none"
+                      >
+                        Token
+                      </label>
+                    )}
+                    <input
+                      type="text"
+                      onChange={(e) => setToken(e.target.value)}
+                      id="Token-register"
+                      placeholder="Token"
+                      className="text-[1.6rem] rounded-md border-2 outline-none p-6 ease-in duration-300 focus:border-purple"
+                    />
+                    <Button
+                      hanleOnClick={hanelSendToken}
+                      status={true}
+                      name="Submit"
+                    />
+                  </div>
+                </div>
+              </div>
+            </div>
+          </>
+        )}
         <div className="w-3/5 mx-auto">
           <div className="w-1/2 mx-auto bg-white p-20 flex-col">
             <div className="flex justify-center flex-col">

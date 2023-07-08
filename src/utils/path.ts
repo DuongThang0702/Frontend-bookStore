@@ -40,6 +40,7 @@ const path = {
   ADMIN: "admin",
   DASHBOARD: "dashboard",
   CREATE_BOOK: "create-books",
+  MANAGE_BOOKS: "manage-books",
   MANAGE_USER: "manage-user",
   MANAGE_ORDER: "manage-order",
   //Member

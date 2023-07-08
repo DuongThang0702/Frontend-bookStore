@@ -1,7 +1,7 @@
 import { FC } from "react";
 
 const Page: FC = ({}) => {
-  return <></>;
+  return <>dashboard</>;
 };
 
 export default Page;

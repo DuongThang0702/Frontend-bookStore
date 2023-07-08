@@ -5,8 +5,10 @@ export const apiRegister = (data: object) =>
     url: "/user/register",
     method: "post",
     data,
-    withCredentials: true,
   });
+
+export const apiFinalRegister = (token: string) =>
+  axiosClient({ url: `/user/final-register/${token}`, method: "patch" });
 
 export const apiLogin = (data: object) =>
   axiosClient({

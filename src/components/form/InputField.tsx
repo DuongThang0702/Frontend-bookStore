@@ -6,6 +6,7 @@ interface InputFieldProps {
   type?: string;
   value: string;
   setValue: Dispatch<SetStateAction<any>>;
+  style?: string;
 }
 
 const InputField: FC<InputFieldProps> = ({
@@ -13,6 +14,7 @@ const InputField: FC<InputFieldProps> = ({
   type,
   value,
   nameKey,
+  style,
   setValue,
 }) => {
   return (
@@ -30,7 +32,11 @@ const InputField: FC<InputFieldProps> = ({
         onChange={(e) =>
           setValue((prev: any) => ({ ...prev, [nameKey]: e.target.value }))
         }
-        className="border outline-none h-[4.2rem] mb-8 p-4 text-[1.6rem] rounded-sm"
+        className={
+          style
+            ? style
+            : `border outline-none h-[4.2rem] mb-8 p-4 text-[1.6rem] rounded-sm`
+        }
       />
     </div>
   );

@@ -1,4 +1,5 @@
 import path from "./path";
+import { NavigationLink } from "./ILayout";
 
 export const navigationAboutPage = [
   { id: 1, value: "Gift Cards", path: path.GIFTCARD },
@@ -7,66 +8,83 @@ export const navigationAboutPage = [
   { id: 4, value: "Deals", path: path.BESTSELLER },
 ];
 
-export const navigationLink = [
+export const navigationLink: Array<NavigationLink> = [
   {
-    id: 18,
+    id: 1,
+    type: "single",
     value: "Home",
     path: path.HOME,
   },
   {
-    id: 1,
+    id: 2,
+    type: "single",
     value: "Gift Cards",
     path: path.GIFTCARD,
   },
 
   {
-    id: 2,
+    id: 3,
+    type: "single",
     value: "Best Sellers",
     path: path.BESTSELLER,
   },
   {
-    id: 3,
+    id: 4,
+    type: "single",
     value: "New Books",
     path: path.NEWBOOKS,
   },
 
   {
-    id: 4,
+    id: 5,
+    type: "parent",
     value: "Books",
-    path: path.FICTION,
     subMenu: [
-      { id: 18, value: "Fiction", path: path.FICTION },
-      { id: 5, value: "Poetry", path: path.POETRY },
-      { id: 6, value: "Fantasy", path: path.FANTASY },
-      { id: 7, value: "HistoricalFiction", path: path.historicalFiction },
+      { id: 1, value: "Fiction", path: path.FICTION, type: "single" },
+      { id: 2, value: "Poetry", path: path.POETRY, type: "single" },
+      { id: 3, value: "Fantasy", path: path.FANTASY, type: "single" },
+      {
+        id: 4,
+        value: "HistoricalFiction",
+        path: path.historicalFiction,
+        type: "single",
+      },
     ],
   },
 
   {
-    id: 8,
+    id: 6,
+    type: "parent",
     value: "Nonfiction",
-    path: path.PHILOSOPHY,
     subMenu: [
-      { id: 9, value: "Travel", path: path.TRAVEL },
-      { id: 10, value: "Mystery", path: path.MYSTERY },
-      { id: 11, value: "Philosophy", path: path.PHILOSOPHY },
-      { id: 12, value: "Business", path: path.BUSINESS },
-      { id: 13, value: "Autobiography", path: path.AUTOBIOGRAPHY },
+      { id: 1, value: "Travel", path: path.TRAVEL, type: "single" },
+      { id: 2, value: "Mystery", path: path.MYSTERY, type: "single" },
+      { id: 3, value: "Philosophy", path: path.PHILOSOPHY, type: "single" },
+      { id: 4, value: "Business", path: path.BUSINESS, type: "single" },
+      {
+        id: 5,
+        value: "Autobiography",
+        path: path.AUTOBIOGRAPHY,
+        type: "single",
+      },
     ],
   },
 
   {
-    id: 15,
+    type: "single",
+    id: 7,
     value: "Blog",
     path: path.BLOG,
   },
   {
-    id: 16,
+    type: "single",
+    id: 8,
     value: "Pride Month",
     path: path.PRIDE_MONTH,
   },
   {
-    id: 17,
+    type: "single",
+    id: 9,
     value: "YA",
     path: path.YA,
   },
@@ -84,4 +102,63 @@ export const footerLink = [
 export const submenuUser = [
   { id: 1, value: "Profile", path: path.PROFILE },
   { id: 2, value: "Logout", path: path.LOGOUT },
+];
+
+export const adminSidebar: Array<NavigationLink> = [
+  {
+    id: 1,
+    value: "Dashboard",
+    type: "single",
+    path: path.ADMIN + "/" + path.DASHBOARD,
+  },
+  {
+    id: 2,
+    value: "Manage Order",
+    type: "single",
+    path: path.ADMIN + "/" + path.MANAGE_ORDER,
+  },
+  {
+    id: 3,
+    value: "Manage User",
+    type: "single",
+    path: path.ADMIN + "/" + path.MANAGE_USER,
+  },
+  {
+    id: 4,
+    value: "Manage Products",
+    type: "parent",
+    subMenu: [
+      {
+        id: 1,
+        type: "single",
+        value: "Create Product",
+        path: path.ADMIN + "/" + path.CREATE_BOOK,
+      },
+      {
+        id: 2,
+        type: "single",
+        value: "Manage Product",
+        path: path.ADMIN + "/" + path.MANAGE_BOOKS,
+      },
+    ],
+  },
+  {
+    id: 5,
+    value: "Manage Products",
+    type: "parent",
+    subMenu: [
+      {
+        id: 1,
+        type: "single",
+        value: "Create Product",
+        path: path.ADMIN + "/" + path.CREATE_BOOK,
+      },
+      {
+        id: 2,
+        type: "single",
+        value: "Manage Product",
+        path: path.ADMIN + "/" + path.MANAGE_BOOKS,
+      },
+    ],
+  },
 ];

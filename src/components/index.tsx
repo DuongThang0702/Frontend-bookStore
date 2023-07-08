@@ -14,3 +14,4 @@ export { default as Accordion } from "./about-us/accordion";
 export { default as FooterMiddle } from "./layout/FooterMiddle";
 export { default as CustomSlider } from "./homepage/CustomSlider";
 export { default as LoadingWhenChangePage } from "./effect/LoadingChangePage";
+export { default as SidebarAdmin } from "./admin/sidebar";

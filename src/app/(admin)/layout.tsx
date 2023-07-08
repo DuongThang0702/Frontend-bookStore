@@ -4,7 +4,7 @@ import { RootState } from "@/redux/store";
 import path from "@/utils/path";
 import { useRouter } from "next/navigation";
 import { useSelector } from "react-redux";
-
+import { SidebarAdmin } from "@/components";
 export default function AdminLayout({
   children,
 }: {
@@ -14,5 +14,10 @@ export default function AdminLayout({
   const { isLoggedIn, current } = useSelector((state: RootState) => state.user);
   if (!isLoggedIn || !current || current.role !== "admin")
     return router.push(`/${path.LOGIN}`);
-  return <>{children}</>;
+  return (
+    <div className="flex">
+      <SidebarAdmin />
+      <div className="flex-auto ml-8">{children}</div>
+    </div>
+  );
 }
