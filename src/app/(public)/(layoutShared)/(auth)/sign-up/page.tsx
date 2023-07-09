@@ -8,12 +8,9 @@ import { Button } from "@/components";
 import Swal from "sweetalert2";
 import { useRouter } from "next/navigation";
 import path from "@/utils/path";
-import { useDispatch } from "react-redux";
-import { AppDispatch } from "@/redux/store";
 interface pageProps {}
 
 const Page: FC<pageProps> = ({}) => {
-  const dispatch = useDispatch<AppDispatch>();
   const router = useRouter();
   const [isValid, setIsValid] = useState<boolean>(false);
   const [payload, setPayload] = useState<Register>({
@@ -22,7 +19,7 @@ const Page: FC<pageProps> = ({}) => {
     email: "",
     password: "",
   });
-  const [isShowModel, setIsShowModel] = useState<boolean>(true);
+  const [isShowModel, setIsShowModel] = useState<boolean>(false);
   const [token, setToken] = useState<string>("");
   useEffect(() => {
     if (payload !== null) {

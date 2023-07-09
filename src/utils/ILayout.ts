@@ -1,4 +1,5 @@
 export interface NavigationLink {
+  icon?: JSX.Element;
   id: number;
   value: string;
   type: string;
@@ -7,6 +8,7 @@ export interface NavigationLink {
 }
 
 export interface SubMenu {
+  icon?: JSX.Element;
   id: number;
   value: string;
   type: string;

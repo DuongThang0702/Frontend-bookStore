@@ -33,6 +33,3 @@ export default function PublicLayout({
     </>
   );
 }
-function RootState(a: unknown, b: unknown): boolean {
-  throw new Error("Function not implemented.");
-}

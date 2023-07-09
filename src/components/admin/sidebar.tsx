@@ -3,27 +3,78 @@ import path from "@/utils/path";
 import Image from "next/image";
 import Link from "next/link";
 import { FC, memo, useState } from "react";
-import { adminSidebar } from "@/utils/contants";
 import { useSelector } from "react-redux";
 import { RootState } from "@/redux/store";
 import { usePathname } from "next/navigation";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import icon from "@/utils/icon";
+import { NavigationLink } from "@/utils/ILayout";
+import sidebar from "@/style/admin/sidebar.module.css";
 
-const style =
-  "p-4 hover:bg-gray hover:text-[#497FF2] text-[1.4rem] font-semibold rounded-md mb-1";
+export const adminSidebar: Array<NavigationLink> = [
+  {
+    id: 1,
+    icon: <FontAwesomeIcon icon={icon.faGauge} />,
+    value: "Dashboard",
+    type: "single",
+    path: path.ADMIN + "/" + path.DASHBOARD,
+  },
+  {
+    id: 2,
+    icon: <FontAwesomeIcon icon={icon.faCartShopping} />,
+    value: "Manage Order",
+    type: "single",
+    path: path.ADMIN + "/" + path.MANAGE_ORDER,
+  },
+  {
+    id: 3,
+    value: "Manage User",
+    type: "single",
+    path: path.ADMIN + "/" + path.MANAGE_USER,
+    icon: <FontAwesomeIcon icon={icon.faBookBookmark} />,
+  },
+  {
+    id: 4,
+    value: "Manage Products",
+    type: "parent",
+    icon: <FontAwesomeIcon icon={icon.faBook} />,
+    subMenu: [
+      {
+        id: 1,
+        type: "single",
+        value: "Create Product",
+        path: path.ADMIN + "/" + path.CREATE_BOOK,
+        icon: <FontAwesomeIcon icon={icon.faFolderPlus} />,
+      },
+      {
+        id: 2,
+        type: "single",
+        value: "Manage Product",
+        path: path.ADMIN + "/" + path.MANAGE_BOOKS,
+        icon: <FontAwesomeIcon icon={icon.faBookAtlas} />,
+      },
+    ],
+  },
+];
+
+const style = "p-4 hover:bg-gray text-[1.4rem] font-semibold rounded-md mb-1";
 
 const Page: FC = ({}) => {
   const { current, isLoggedIn } = useSelector((state: RootState) => state.user);
   const [isShowSubMenu, setIsShowSubMenu] = useState<Array<number>>([]);
-
+  const [isActiveTabParent, setIsActiveTabParent] = useState<boolean>(false);
   const pathName = usePathname();
   const hanleShowMenuUser = (tabId: number) => {
     if (isShowSubMenu.some((el: number) => el === tabId))
-      setIsShowSubMenu((prev: Array<number>) =>
-        prev.filter((el: number) => el !== tabId)
-      );
-    else setIsShowSubMenu((prev: Array<number>) => [...prev, tabId]);
+      setIsShowSubMenu((prev: Array<number>) => {
+        setIsActiveTabParent(false);
+        return prev.filter((el: number) => el !== tabId);
+      });
+    else
+      setIsShowSubMenu((prev: Array<number>) => {
+        setIsActiveTabParent(true);
+        return [...prev, tabId];
+      });
   };
   return (
     <div className="w-[30rem] flex-none shadow-boxShadowRight h-screen">
@@ -43,7 +94,7 @@ const Page: FC = ({}) => {
           </div>
         </div>
       )}
-      <div>
+      <div className="mt-4">
         {adminSidebar.map((el) => {
           const isActive: boolean = pathName.startsWith(`/${el.path}`);
           return (
@@ -53,21 +104,29 @@ const Page: FC = ({}) => {
                   <Link
                     className={`${style} block mx-4 ${
                       isActive ? "bg-[#EBEBEB]" : ""
-                    }`}
+                    } ${sidebar.tab}`}
                     key={el.id}
                     href={el.path ? el.path : ""}
                   >
-                    {el.value}
+                    <div>
+                      <span className="mr-4 text-gray-500">{el?.icon}</span>
+                      {el.value}
+                    </div>
                   </Link>
                 </>
               )}
               {el.type === "parent" && (
                 <>
                   <div
-                    className={`${style} flex justify-between cursor-pointer mx-4`}
+                    className={`${style} flex justify-between cursor-pointer mx-4 ${
+                      sidebar.tab
+                    } ${isActiveTabParent ? "bg-gray" : ""}`}
                     onClick={() => hanleShowMenuUser(el.id)}
                   >
-                    {el.value}
+                    <div>
+                      <span className={`mr-4 text-gray-500`}>{el?.icon}</span>
+                      {el.value}
+                    </div>
                     <div>
                       <FontAwesomeIcon
                         icon={icon.faCaretRight}
@@ -95,6 +154,9 @@ const Page: FC = ({}) => {
                               isActive ? "bg-[#EBEBEB]" : ""
                             } mb-1 ml-6`}
                           >
+                            <span className="mr-4 text-gray-500">
+                              {el?.icon}
+                            </span>
                             {el.value}
                           </Link>
                         );

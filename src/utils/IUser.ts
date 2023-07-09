@@ -28,4 +28,5 @@ export interface UserCurrent extends ForgotPassword, Register {
 export interface UserData extends UserCurrent, ForgotPassword {
   role: string;
   refreshToken: string;
+  isBlocked: boolean;
 }

@@ -14,6 +14,7 @@ export default function AdminLayout({
   const { isLoggedIn, current } = useSelector((state: RootState) => state.user);
   if (!isLoggedIn || !current || current.role !== "admin")
     return router.push(`/${path.LOGIN}`);
+
   return (
     <div className="flex">
       <SidebarAdmin />

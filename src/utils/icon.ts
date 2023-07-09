@@ -4,7 +4,13 @@ import {
   faStar,
   faCircleCheck,
   faCircleXmark,
+  faGauge,
   faCaretRight,
+  faPeopleGroup,
+  faBook,
+  faBookBookmark,
+  faFolderPlus,
+  faBookAtlas,
 } from "@fortawesome/free-solid-svg-icons";
 import {
   faFacebook,
@@ -18,11 +24,17 @@ const icon = {
   faStar,
   faCaretRight,
   faFacebook,
+  faGauge,
   faTwitter,
   faInstagram,
   faCircleUser,
   faCircleCheck,
   faCircleXmark,
+  faPeopleGroup,
+  faBook,
+  faBookBookmark,
+  faFolderPlus,
+  faBookAtlas,
 };
 
 export default icon;
