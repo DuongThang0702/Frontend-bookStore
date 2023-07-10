@@ -15,3 +15,5 @@ export { default as FooterMiddle } from "./layout/FooterMiddle";
 export { default as CustomSlider } from "./homepage/CustomSlider";
 export { default as LoadingWhenChangePage } from "./effect/LoadingChangePage";
 export { default as SidebarAdmin } from "./admin/sidebar";
+export { default as InputForm } from "./form/inputForm";
+export { default as Select } from "./form/select";

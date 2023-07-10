@@ -30,7 +30,7 @@ export const adminSidebar: Array<NavigationLink> = [
     id: 3,
     value: "Manage User",
     type: "single",
-    path: path.ADMIN + "/" + path.MANAGE_USER,
+    path: path.ADMIN + "/" + path.MANAGE_USER + "?page=1",
     icon: <FontAwesomeIcon icon={icon.faBookBookmark} />,
   },
   {

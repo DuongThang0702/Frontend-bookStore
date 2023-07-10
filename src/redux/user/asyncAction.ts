@@ -7,6 +7,6 @@ export const getUserCurrent = createAsyncThunk(
     const response = await apiGetUserCurrent();
     if (response?.data.error === 1) return rejectWithValue(response);
     if (response?.data.error === 2) return rejectWithValue(response);
-    return response.data.userData;
+    if (response?.data.error === 0) return response.data.userData;
   }
 );

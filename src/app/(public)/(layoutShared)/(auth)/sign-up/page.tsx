@@ -37,9 +37,8 @@ const Page: FC<pageProps> = ({}) => {
     }
   }, [payload]);
 
-  const hanelSendToken = useCallback(async () => {
+  const handleSendToken = useCallback(async () => {
     const response = await apiFinalRegister(token);
-
     if (response.data.error === 0) {
       Swal.fire("Congralution", "successful authentication", "success").then(
         () => {
@@ -84,7 +83,7 @@ const Page: FC<pageProps> = ({}) => {
                       className="text-[1.6rem] rounded-md border-2 outline-none p-6 ease-in duration-300 focus:border-purple"
                     />
                     <Button
-                      hanleOnClick={hanelSendToken}
+                      hanleOnClick={handleSendToken}
                       status={true}
                       name="Submit"
                     />

@@ -4,9 +4,10 @@ interface buttonProps {
   style?: string;
   name: string;
   status: boolean;
-  hanleOnClick: () => void;
+  hanleOnClick?: () => void;
   icon?: JSX.Element;
   w60?: boolean;
+  type?: string;
 }
 
 const Button: FC<buttonProps> = ({
@@ -16,10 +17,11 @@ const Button: FC<buttonProps> = ({
   hanleOnClick,
   icon,
   w60,
+  type,
 }) => {
   return (
     <button
-      type="button"
+      type={type ? "submit" : "button"}
       disabled={!status}
       className={
         status

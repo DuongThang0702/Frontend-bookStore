@@ -19,7 +19,6 @@ const Page: FC<PageProps> = ({ totalCount }) => {
   const pathname: string = usePathname();
   const currentPage: number = parseInt(query.get("page") as string);
   const pagination = usePagination(totalCount, currentPage);
-
   const totalPage: number = Math.ceil(
     totalCount / parseInt(process.env.NEXT_PUBLIC_LIMIT as string)
   );
