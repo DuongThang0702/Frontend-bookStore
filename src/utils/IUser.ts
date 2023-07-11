@@ -22,12 +22,12 @@ export interface UserCurrent extends ForgotPassword, Register {
   address: {};
   cart: [];
   createdAt: string;
+  role?: string;
+  isBlocked?: string;
   updatedAt: string;
 }
 
 export interface UserData extends UserCurrent, ForgotPassword {
-  role: string;
   refreshToken: string;
-  isBlocked: boolean;
   email: string;
 }

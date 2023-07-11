@@ -1,13 +1,14 @@
 "use client";
-import { FC, useEffect, useState } from "react";
-import { apiGetUsers } from "@/api";
+import { FC, useCallback, useEffect, useState } from "react";
+import { apiGetUsers, apiUpdateUserByAdmin, apiDeleteUser } from "@/api";
 import { UserCurrent, UserData } from "@/utils/IUser";
 import { Button, InputField, Pagination, Select } from "@/components";
 import useDebounce from "@/hooks/useDebounce";
 import { useSearchParams } from "next/navigation";
 import moment from "moment";
-import { InputForm } from "@/components/";
 import { useForm } from "react-hook-form";
+import { toast } from "react-toastify";
+import Swal from "sweetalert2";
 
 interface UsersData {
   Users?: Array<UserData>;
@@ -15,17 +16,17 @@ interface UsersData {
 }
 
 interface FormData {
+  _id: string;
   email: string;
   lastName: string;
   firstName: string;
   role: string;
-  status: boolean;
+  isBlocked: boolean;
 }
 
 const Page: FC = ({}) => {
   const {
     register,
-    setValue,
     handleSubmit,
     formState: { errors },
   } = useForm<FormData>();
@@ -34,6 +35,7 @@ const Page: FC = ({}) => {
   const page: string | null = searchParams.get("page");
   const [queries, setQueries] = useState<{ q: string }>({ q: "" });
   const [users, setUsers] = useState<UsersData | null>(null);
+  const [update, setUpdate] = useState<boolean>(false);
   const fetchUsreData = async (params?: { q?: string }) => {
     const response = await apiGetUsers({
       ...params,
@@ -42,16 +44,42 @@ const Page: FC = ({}) => {
     });
     if (response.data.error === 0) setUsers(response.data);
   };
+
+  const render = useCallback(() => setUpdate(!update), [update]);
   const queriesDebounce = useDebounce(queries.q, 800);
   useEffect(() => {
     const params: { q?: string } = {};
     if (queriesDebounce) params.q = queriesDebounce;
     fetchUsreData(params);
-  }, [queriesDebounce, page]);
+  }, [queriesDebounce, page, update]);
 
-  const handleUpdate = (data: FormData) => {
-    console.log(data);
+  const handleUpdate = async (data: FormData) => {
+    const response = await apiUpdateUserByAdmin(data, editData?._id);
+    if (response.data.error === 0) {
+      render();
+      setEditData(null);
+      toast.success(response.data.mes);
+    } else toast.error(response.data.mes);
   };
+
+  const handleDeleteUser = async (uid: string) => {
+    Swal.fire({
+      title: "Are you sure",
+      text: "Are you ready remove this user",
+      showCancelButton: true,
+    }).then(async (rs) => {
+      if (rs.isConfirmed) {
+        const response = await apiDeleteUser(uid);
+
+        if (response.data.error === 0) {
+          render();
+          toast.success(response.data.mes);
+        } else toast.error(response.data.mes);
+      }
+    });
+  };
+  console.log(editData);
+
   return (
     <>
       <div className="w-full p-8" id="">
@@ -68,7 +96,7 @@ const Page: FC = ({}) => {
           />
         </div>
         <form onSubmit={handleSubmit(handleUpdate)}>
-          <Button name="Update" status={true} type="submit" />
+          {editData && <Button name="Update" status={true} type="submit" />}
           <table className="table-auto text-left mb-6 w-full">
             <thead className="bg-[#374151] text-[1.4rem] text-white">
               <tr>
@@ -91,7 +119,7 @@ const Page: FC = ({}) => {
                       {editData?._id === el._id ? (
                         <div className="py-2 h-[8rem]">
                           <input
-                            defaultValue={editData.email}
+                            defaultValue={editData?.email}
                             type="text"
                             placeholder="email"
                             className="w-full p-4 outline-1 border-2 border-gray-500"
@@ -119,12 +147,14 @@ const Page: FC = ({}) => {
                       {editData?._id === el._id ? (
                         <div className="py-2 h-[8rem]">
                           <input
-                            defaultValue={editData.firstName}
+                            defaultValue={editData?.firstName}
                             type="text"
                             placeholder="firstName"
                             id="firstName"
                             className="w-full p-4 outline-1 border-2 border-gray-500"
-                            {...register}
+                            {...register("firstName", {
+                              required: "Missing input",
+                            })}
                           />
                           {errors.firstName && (
                             <small className="text-red font-semibold">
@@ -140,12 +170,14 @@ const Page: FC = ({}) => {
                       {editData?._id === el._id ? (
                         <div className="py-2 h-[8rem]">
                           <input
-                            defaultValue={editData.lastName}
+                            defaultValue={editData?.lastName}
                             type="text"
                             id="LastName"
                             placeholder="LastName"
                             className="w-full p-4 outline-1 border-2 border-gray-500"
-                            {...register}
+                            {...register("lastName", {
+                              required: "Missing input",
+                            })}
                           />
                           {errors.lastName && (
                             <small className="text-red font-semibold">
@@ -159,14 +191,34 @@ const Page: FC = ({}) => {
                     </td>
                     <td className="py-2 px-4">
                       {editData?._id === el._id ? (
-                        <Select />
+                        <div className="py-2 h-[8rem]">
+                          <select
+                            {...register("role")}
+                            className="w-full p-4 outline-1 border-2 border-gray-500"
+                            defaultValue={editData?.role}
+                          >
+                            <option value="">--CHOOSE--</option>
+                            <option value="admin">admin</option>
+                            <option value="user">user</option>
+                          </select>
+                        </div>
                       ) : (
                         <span>{el.role}</span>
                       )}
                     </td>
                     <td className="py-2 px-4">
                       {editData?._id === el._id ? (
-                        <Select />
+                        <div className="py-2 h-[8rem]">
+                          <select
+                            {...register("isBlocked")}
+                            className="w-full p-4 outline-1 border-2 border-gray-500"
+                            defaultValue={editData?.isBlocked}
+                          >
+                            <option value="">--CHOOSE--</option>
+                            <option value="true">isBlocked</option>
+                            <option value="false">Active</option>
+                          </select>
+                        </div>
                       ) : (
                         <span>{el.isBlocked ? "Blocked" : "Active"}</span>
                       )}
@@ -175,13 +227,25 @@ const Page: FC = ({}) => {
                       {moment(el.createdAt).format("DD/MM/YYYY")}
                     </td>
                     <td className="py-2 px-4 text-center">
+                      {editData ? (
+                        <span
+                          onClick={() => setEditData(null)}
+                          className="px-4 text-orange-800 hover:underline cursor-pointer"
+                        >
+                          Back
+                        </span>
+                      ) : (
+                        <span
+                          onClick={() => setEditData(el)}
+                          className="px-4 text-orange-800 hover:underline cursor-pointer"
+                        >
+                          Edit
+                        </span>
+                      )}
                       <span
-                        onClick={() => setEditData(el)}
+                        onClick={() => handleDeleteUser(el._id)}
                         className="px-4 text-orange-800 hover:underline cursor-pointer"
                       >
-                        Edit
-                      </span>
-                      <span className="px-4 text-orange-800 hover:underline cursor-pointer">
                         Delete
                       </span>
                     </td>

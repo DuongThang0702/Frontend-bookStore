@@ -5,6 +5,7 @@ import path from "@/utils/path";
 import { useRouter } from "next/navigation";
 import { useSelector } from "react-redux";
 import { SidebarAdmin } from "@/components";
+import { ToastContainer } from "react-toastify";
 export default function AdminLayout({
   children,
 }: {
@@ -19,6 +20,18 @@ export default function AdminLayout({
     <div className="flex">
       <SidebarAdmin />
       <div className="flex-auto ml-8">{children}</div>
+      <ToastContainer
+        position="top-right"
+        autoClose={5000}
+        hideProgressBar={false}
+        newestOnTop={false}
+        closeOnClick
+        rtl={false}
+        pauseOnFocusLoss
+        draggable
+        pauseOnHover
+        theme="colored"
+      />
     </div>
   );
 }
