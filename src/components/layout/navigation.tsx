@@ -1,6 +1,6 @@
 import { FC } from "react";
 import Menu from "./Menu";
-import { NavigationLink } from "@/utils/ILayout";
+import { NavigationLink } from "@/utils/interface/ILayout";
 
 interface navigationProps {
   NavigationData: Array<NavigationLink>;

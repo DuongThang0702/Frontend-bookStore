@@ -1,7 +1,7 @@
 "use client";
 import { FC, useEffect, useState } from "react";
 import { apiGetBooks } from "@/api";
-import { BookProps } from "@/utils/IBook";
+import { BookProps } from "@/utils/interface/IBook";
 import {
   CustomSlider,
   BookCard,

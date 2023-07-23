@@ -11,6 +11,8 @@ import {
   faBookBookmark,
   faFolderPlus,
   faBookAtlas,
+  faXmark,
+  faUpload,
 } from "@fortawesome/free-solid-svg-icons";
 import {
   faFacebook,
@@ -35,6 +37,8 @@ const icon = {
   faBookBookmark,
   faFolderPlus,
   faBookAtlas,
+  faXmark,
+  faUpload,
 };
 
 export default icon;

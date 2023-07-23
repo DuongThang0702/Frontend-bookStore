@@ -2,7 +2,7 @@
 import { FC, useEffect, useState } from "react";
 import Image from "next/image";
 import Link from "next/link";
-import { BookProps } from "@/utils/IBook";
+import { BookProps } from "@/utils/interface/IBook";
 import { apiGetBooks } from "@/api";
 import { Button, Loading } from "@/components";
 import { faCartPlus } from "@fortawesome/free-solid-svg-icons";

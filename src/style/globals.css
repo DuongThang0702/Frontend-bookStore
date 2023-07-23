@@ -53,3 +53,12 @@ button.slick-prev::before {
 button.slick-prev::before {
   content: '\276E'
 }
+
+input::-webkit-outer-spin-button,
+input::-webkit-inner-spin-button {
+    -webkit-appearance: none;
+    margin: 0;
+}
+input[type=number]{
+  -moz-appearance: textfield;
+}

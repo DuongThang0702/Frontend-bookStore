@@ -2,7 +2,7 @@
 import { Banner, Loading } from "@/components";
 import { FC, useEffect, useState } from "react";
 import { FooterMiddle, TitleBook, CustomSlider } from "@/components";
-import { BookProps } from "@/utils/IBook";
+import { BookProps } from "@/utils/interface/IBook";
 import { apiGetBooks } from "@/api";
 
 const Home: FC = ({}) => {

@@ -8,7 +8,7 @@ import { RootState } from "@/redux/store";
 import { usePathname } from "next/navigation";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import icon from "@/utils/icon";
-import { NavigationLink } from "@/utils/ILayout";
+import { NavigationLink } from "@/utils/interface/ILayout";
 import sidebar from "@/style/admin/sidebar.module.css";
 
 export const adminSidebar: Array<NavigationLink> = [
@@ -17,20 +17,20 @@ export const adminSidebar: Array<NavigationLink> = [
     icon: <FontAwesomeIcon icon={icon.faGauge} />,
     value: "Dashboard",
     type: "single",
-    path: path.ADMIN + "/" + path.DASHBOARD,
+    path: `/${path.ADMIN}/${path.DASHBOARD}`,
   },
   {
     id: 2,
     icon: <FontAwesomeIcon icon={icon.faCartShopping} />,
     value: "Manage Order",
     type: "single",
-    path: path.ADMIN + "/" + path.MANAGE_ORDER,
+    path: `/${path.ADMIN}/${path.MANAGE_ORDER}`,
   },
   {
     id: 3,
     value: "Manage User",
     type: "single",
-    path: path.ADMIN + "/" + path.MANAGE_USER + "?page=1",
+    path: `/${path.ADMIN}/${path.MANAGE_USER}?page=1`,
     icon: <FontAwesomeIcon icon={icon.faBookBookmark} />,
   },
   {
@@ -43,14 +43,14 @@ export const adminSidebar: Array<NavigationLink> = [
         id: 1,
         type: "single",
         value: "Create Product",
-        path: path.ADMIN + "/" + path.CREATE_BOOK,
+        path: `/${path.ADMIN}/${path.CREATE_BOOK}`,
         icon: <FontAwesomeIcon icon={icon.faFolderPlus} />,
       },
       {
         id: 2,
         type: "single",
         value: "Manage Product",
-        path: path.ADMIN + "/" + path.MANAGE_BOOKS,
+        path: `/${path.ADMIN}/${path.MANAGE_BOOKS}?page=1`,
         icon: <FontAwesomeIcon icon={icon.faBookAtlas} />,
       },
     ],
@@ -77,7 +77,7 @@ const Page: FC = ({}) => {
       });
   };
   return (
-    <div className="w-[30rem] flex-none shadow-boxShadowRight h-screen">
+    <div className="w-[30rem] shadow-boxShadowRight h-full">
       <Link href={`${path.HOME}`} className="border-b block">
         <Image
           src={"/logowhite.png"}
@@ -140,7 +140,7 @@ const Page: FC = ({}) => {
                   </div>
 
                   {isShowSubMenu.some((id: number) => id === el.id) && (
-                    <div className="mx-4 flex flex-col duration-200">
+                    <div className={`mx-4 flex flex-col duration-200`}>
                       {el.subMenu?.map((el) => {
                         const isActive: boolean = pathName.startsWith(
                           `/${el.path}`
@@ -152,12 +152,14 @@ const Page: FC = ({}) => {
                             key={el.id}
                             className={`${style} ${
                               isActive ? "bg-[#EBEBEB]" : ""
-                            } mb-1 ml-6`}
+                            } mb-1 ml-6  ${sidebar.tab}`}
                           >
-                            <span className="mr-4 text-gray-500">
-                              {el?.icon}
-                            </span>
-                            {el.value}
+                            <div>
+                              <span className="mr-4 text-gray-500">
+                                {el?.icon}
+                              </span>
+                              {el.value}
+                            </div>
                           </Link>
                         );
                       })}

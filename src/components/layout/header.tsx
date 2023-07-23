@@ -90,7 +90,7 @@ const Header: FC = ({}) => {
                   <Link
                     href={
                       current.role === "admin"
-                        ? `/${path.ADMIN}/${path.DASHBOARD}?page=1`
+                        ? `/${path.ADMIN}/${path.DASHBOARD}`
                         : `/${path.MEMBER}/${path.PERSONAL}`
                     }
                     className="text-2xl min-w-[20rem] block font-header 

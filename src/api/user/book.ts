@@ -9,3 +9,6 @@ export const apiGetBooks = (params?: object) =>
 
 export const apiGetBookById = (params: string) =>
   axiosClient({ url: `/book/book-id/${params}`, method: "get" });
+
+export const apiGetCategoryBooks = async () =>
+  axiosClient({ url: "/category", method: "get" });

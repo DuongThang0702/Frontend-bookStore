@@ -32,6 +32,7 @@ export interface IBook {
 export interface BookProps {
   books?: IBook[];
   count?: number;
+  error?: number;
 }
 
 export interface ResponseBooks {

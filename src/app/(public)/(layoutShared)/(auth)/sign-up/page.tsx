@@ -1,7 +1,7 @@
 "use client";
 import { FC, useCallback, useEffect, useState } from "react";
 import Image from "next/image";
-import { Register } from "@/utils/IUser";
+import { Register } from "@/utils/interface/IUser";
 import { InputField } from "@/components";
 import { apiFinalRegister, apiRegister } from "@/api";
 import { Button } from "@/components";

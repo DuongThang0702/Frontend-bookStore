@@ -2,7 +2,7 @@
 import { apiForgotPassword } from "@/api";
 import { InputField } from "@/components";
 import Button from "@/components/form/button";
-import { ForgotPassword } from "@/utils/IUser";
+import { ForgotPassword } from "@/utils/interface/IUser";
 import { FC, useCallback, useEffect, useState } from "react";
 import { toast } from "react-toastify";
 

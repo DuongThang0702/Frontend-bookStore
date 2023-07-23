@@ -1,29 +1,20 @@
 import React, { FC, memo } from "react";
-import {
-  FieldErrors,
-  UseFormHandleSubmit,
-  UseFormRegister,
-} from "react-hook-form";
-
-interface FormData {
-  email: string;
-  lastName: string;
-  firstName: string;
-  role: string;
-  status: boolean;
-}
+import { UseFormRegister } from "react-hook-form";
 
 interface InputForm {
   label?: string;
+  value?: string;
   placeholder?: string;
   disabled?: boolean;
   type?: string;
   fullW?: boolean;
-  id: any;
-  errors: FieldErrors<FormData>;
-  validate: object;
-  register: UseFormRegister<FormData>;
-  handleSubmit?: UseFormHandleSubmit<FormData, undefined>;
+  id: string;
+  errors?: string;
+  validate?: object;
+  style?: string;
+  defaultValue?: string | number;
+  styleLabel?: string;
+  register: UseFormRegister<any>;
 }
 
 const inputForm: FC<InputForm> = ({
@@ -34,22 +25,39 @@ const inputForm: FC<InputForm> = ({
   fullW,
   id,
   validate,
-  register,
-  handleSubmit,
+  defaultValue,
   errors,
+  style,
+  styleLabel,
+  register,
 }) => {
   return (
-    <div>
-      {label && <label htmlFor={id}>{label}</label>}
+    <>
+      {label && (
+        <label
+          htmlFor={id}
+          className={`${
+            styleLabel ? styleLabel : "text-2xl font-semibold tracking-wider"
+          }`}
+        >
+          {label}
+        </label>
+      )}
       <input
         type={type}
         placeholder={placeholder}
-        className={`${fullW ? "w-full" : ""} px-4 py-2`}
+        className={`${
+          style
+            ? style
+            : "p-4 outline-1 border-2 border-gray-500 mt-4 text-[1.6rem]"
+        } ${fullW ? "w-full" : ""} `}
         disabled={disabled}
+        id={id}
         {...register(id, validate)}
+        defaultValue={defaultValue}
       />
-      {/* {errors[id] && <span>{errors[id]?.message}</span>} */}
-    </div>
+      {errors && <small className="text-red font-semibold">{errors}</small>}
+    </>
   );
 };
 

@@ -2,7 +2,7 @@
 import { FC, useState } from "react";
 import Link from "next/link";
 import SubMenu from "./SubMenu";
-import { NavigationLink } from "@/utils/ILayout";
+import { NavigationLink } from "@/utils/interface/ILayout";
 
 interface MenuProps {
   item: NavigationLink;

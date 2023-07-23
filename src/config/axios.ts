@@ -1,5 +1,5 @@
 import axios from "axios";
-import { LocalStorage } from "@/utils/IConfig";
+import { LocalStorage } from "@/utils/interface/";
 const axiosClient = axios.create({
   baseURL: process.env.NEXT_PUBLIC_REACT_APP_API_URL,
   headers: {

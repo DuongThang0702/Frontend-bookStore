@@ -1,8 +1,14 @@
 "use client";
 import { FC, useCallback, useEffect, useState } from "react";
 import { apiGetUsers, apiUpdateUserByAdmin, apiDeleteUser } from "@/api";
-import { UserCurrent, UserData } from "@/utils/IUser";
-import { Button, InputField, Pagination, Select } from "@/components";
+import { UserCurrent, UserData } from "@/utils/interface/IUser";
+import {
+  Button,
+  InputField,
+  Pagination,
+  InputForm,
+  SelectForm,
+} from "@/components";
 import useDebounce from "@/hooks/useDebounce";
 import { useSearchParams } from "next/navigation";
 import moment from "moment";
@@ -31,12 +37,13 @@ const Page: FC = ({}) => {
     formState: { errors },
   } = useForm<FormData>();
   const searchParams = useSearchParams();
-  const [editData, setEditData] = useState<UserCurrent | null>(null);
   const page: string | null = searchParams.get("page");
+  const [editData, setEditData] = useState<UserCurrent | null>(null);
   const [queries, setQueries] = useState<{ q: string }>({ q: "" });
   const [users, setUsers] = useState<UsersData | null>(null);
   const [update, setUpdate] = useState<boolean>(false);
-  const fetchUsreData = async (params?: { q?: string }) => {
+
+  const fetchUserData = async (params?: { q?: string }) => {
     const response = await apiGetUsers({
       ...params,
       limit: parseInt(process.env.NEXT_PUBLIC_LIMIT as string),
@@ -50,7 +57,7 @@ const Page: FC = ({}) => {
   useEffect(() => {
     const params: { q?: string } = {};
     if (queriesDebounce) params.q = queriesDebounce;
-    fetchUsreData(params);
+    fetchUserData(params);
   }, [queriesDebounce, page, update]);
 
   const handleUpdate = async (data: FormData) => {
@@ -78,25 +85,24 @@ const Page: FC = ({}) => {
       }
     });
   };
-  console.log(editData);
 
   return (
     <>
       <div className="w-full p-8" id="">
-        <h1 className="text-[4rem] font-semibold mb-8">Manage User</h1>
+        <h1 className="text-[4rem] font-bold mb-8">Manage User</h1>
         <div className="flex justify-end">
           <InputField
             nameKey="q"
             value={queries.q}
             setValue={setQueries}
-            wFull={true}
+            wFull
             size="50"
-            hidenLabel={true}
+            hidenLabel
             placeholder="Search name or mail user"
           />
         </div>
         <form onSubmit={handleSubmit(handleUpdate)}>
-          {editData && <Button name="Update" status={true} type="submit" />}
+          {editData && <Button name="Update" status type="submit" />}
           <table className="table-auto text-left mb-6 w-full">
             <thead className="bg-[#374151] text-[1.4rem] text-white">
               <tr>
@@ -105,7 +111,7 @@ const Page: FC = ({}) => {
                 <th className="py-2 px-4">First Name</th>
                 <th className="py-2 px-4">Last Name</th>
                 <th className="py-2 px-4">Role</th>
-                <th className="py-2 px-4">Status</th>
+                <th className="py-2 px-4">IsBlocked</th>
                 <th className="py-2 px-4">Created At</th>
                 <th className="py-2 px-4 text-center">Actions</th>
               </tr>
@@ -118,26 +124,21 @@ const Page: FC = ({}) => {
                     <td className="py-2 px-4">
                       {editData?._id === el._id ? (
                         <div className="py-2 h-[8rem]">
-                          <input
+                          <InputForm
                             defaultValue={editData?.email}
-                            type="text"
-                            placeholder="email"
-                            className="w-full p-4 outline-1 border-2 border-gray-500"
                             id="email"
-                            {...register("email", {
+                            register={register}
+                            fullW
+                            validate={{
                               required: "Missing Email",
                               pattern: {
                                 value:
                                   /^[A-Z0-9._%+-]+@[A-Z0-9.-]+\.[A-Z]{2,}$/i,
                                 message: "invalid email address",
                               },
-                            })}
+                            }}
+                            errors={errors?.email?.message}
                           />
-                          {errors.email && (
-                            <small className="text-red font-semibold">
-                              {errors?.email?.message}
-                            </small>
-                          )}
                         </div>
                       ) : (
                         <span>{el.email}</span>
@@ -146,21 +147,15 @@ const Page: FC = ({}) => {
                     <td className="py-2 px-4">
                       {editData?._id === el._id ? (
                         <div className="py-2 h-[8rem]">
-                          <input
-                            defaultValue={editData?.firstName}
-                            type="text"
+                          <InputForm
                             placeholder="firstName"
                             id="firstName"
-                            className="w-full p-4 outline-1 border-2 border-gray-500"
-                            {...register("firstName", {
-                              required: "Missing input",
-                            })}
+                            register={register}
+                            errors={errors?.firstName?.message}
+                            fullW={true}
+                            validate={{ required: "Missing firstName" }}
+                            defaultValue={editData?.firstName}
                           />
-                          {errors.firstName && (
-                            <small className="text-red font-semibold">
-                              {errors?.firstName?.message}
-                            </small>
-                          )}
                         </div>
                       ) : (
                         <span>{el.firstName}</span>
@@ -169,21 +164,15 @@ const Page: FC = ({}) => {
                     <td className="py-2 px-4">
                       {editData?._id === el._id ? (
                         <div className="py-2 h-[8rem]">
-                          <input
+                          <InputForm
+                            id="lastName"
+                            register={register}
                             defaultValue={editData?.lastName}
-                            type="text"
-                            id="LastName"
-                            placeholder="LastName"
-                            className="w-full p-4 outline-1 border-2 border-gray-500"
-                            {...register("lastName", {
-                              required: "Missing input",
-                            })}
+                            fullW
+                            placeholder="lastName"
+                            errors={errors?.lastName?.message}
+                            validate={{ required: "Missing lastName" }}
                           />
-                          {errors.lastName && (
-                            <small className="text-red font-semibold">
-                              {errors?.lastName?.message}
-                            </small>
-                          )}
                         </div>
                       ) : (
                         <span>{el.lastName}</span>
@@ -192,15 +181,18 @@ const Page: FC = ({}) => {
                     <td className="py-2 px-4">
                       {editData?._id === el._id ? (
                         <div className="py-2 h-[8rem]">
-                          <select
-                            {...register("role")}
-                            className="w-full p-4 outline-1 border-2 border-gray-500"
+                          <SelectForm
+                            errors={errors?.role?.message}
+                            id="role"
+                            register={register}
                             defaultValue={editData?.role}
-                          >
-                            <option value="">--CHOOSE--</option>
-                            <option value="admin">admin</option>
-                            <option value="user">user</option>
-                          </select>
+                            fullw
+                            validate={{ required: "require fill" }}
+                            options={[
+                              { value: "admin", text: "admin" },
+                              { value: "user", text: "user" },
+                            ]}
+                          />
                         </div>
                       ) : (
                         <span>{el.role}</span>
@@ -209,15 +201,18 @@ const Page: FC = ({}) => {
                     <td className="py-2 px-4">
                       {editData?._id === el._id ? (
                         <div className="py-2 h-[8rem]">
-                          <select
-                            {...register("isBlocked")}
-                            className="w-full p-4 outline-1 border-2 border-gray-500"
+                          <SelectForm
+                            errors={errors?.isBlocked?.message}
+                            id="isBlocked"
+                            register={register}
                             defaultValue={editData?.isBlocked}
-                          >
-                            <option value="">--CHOOSE--</option>
-                            <option value="true">isBlocked</option>
-                            <option value="false">Active</option>
-                          </select>
+                            fullw
+                            validate={{ required: "require fill" }}
+                            options={[
+                              { value: "true", text: "isBlocked" },
+                              { value: "false", text: "Active" },
+                            ]}
+                          />
                         </div>
                       ) : (
                         <span>{el.isBlocked ? "Blocked" : "Active"}</span>

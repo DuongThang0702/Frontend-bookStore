@@ -1,5 +1,5 @@
 import path from "./path";
-import { NavigationLink } from "./ILayout";
+import { NavigationLink } from "./interface/ILayout";
 
 export const navigationAboutPage = [
   { id: 1, value: "Gift Cards", path: path.GIFTCARD },

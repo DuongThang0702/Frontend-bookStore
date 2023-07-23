@@ -4,7 +4,7 @@ import { FC, useCallback, useEffect, useState } from "react";
 import path from "@/utils/path";
 import { InputField } from "@/components/";
 import Button from "@/components/form/button";
-import { IUser } from "@/utils/IUser";
+import { IUser } from "@/utils/interface/IUser";
 import { useRouter } from "next/navigation";
 import { apiLogin } from "@/api";
 import Swal from "sweetalert2";

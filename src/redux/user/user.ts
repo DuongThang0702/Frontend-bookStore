@@ -1,6 +1,6 @@
 import { createSlice, PayloadAction } from "@reduxjs/toolkit";
 import * as actions from "./asyncAction";
-import { UserCurrent } from "@/utils/IUser";
+import { UserCurrent } from "@/utils/interface/IUser";
 
 interface UserSlice {
   isLoggedIn: boolean;

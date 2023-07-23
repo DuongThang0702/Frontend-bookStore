@@ -1,10 +1,8 @@
 import { FC } from "react";
-import { BookProps } from "@/utils/IBook";
+import { BookProps } from "@/utils/interface/IBook";
 import Image from "next/image";
 import Link from "next/link";
 import path from "@/utils/path";
-
-
 
 const BooksCard: FC<BookProps> = ({ books }) => {
   return (

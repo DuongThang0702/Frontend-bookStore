@@ -1,6 +1,6 @@
 "use client";
 import { FC, useState, CSSProperties, useEffect, memo } from "react";
-import { ClockLoader } from "react-spinners";
+import { HashLoader } from "react-spinners";
 interface LoadingProps {
   load?: boolean;
 }
@@ -16,12 +16,12 @@ const Loading: FC<LoadingProps> = ({}) => {
     setLoading(true);
   }, []);
   return (
-    <div className="flex justify-center z-50 items-center h-screen">
+    <div className="flex justify-center z-50 items-center h-full bg-[rgba(0,0,0,0.5)]">
       <div className="sweet-loading p-20">
-        <ClockLoader
+        <HashLoader
+          color="#36d7b7"
           loading={Loading}
           cssOverride={override}
-          color={"#59429a"}
           aria-label="Loading Spinner"
           data-testid="loader"
         />

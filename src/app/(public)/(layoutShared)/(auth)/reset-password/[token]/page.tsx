@@ -2,7 +2,7 @@
 import { apiResetPassword } from "@/api";
 import { InputField } from "@/components";
 import Button from "@/components/form/button";
-import { ResetPassword } from "@/utils/IUser";
+import { ResetPassword } from "@/utils/interface/IUser";
 import path from "@/utils/path";
 import { useRouter } from "next/navigation";
 import { FC, useCallback, useEffect, useState } from "react";

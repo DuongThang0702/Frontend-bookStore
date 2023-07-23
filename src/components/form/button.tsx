@@ -7,6 +7,8 @@ interface buttonProps {
   hanleOnClick?: () => void;
   icon?: JSX.Element;
   w60?: boolean;
+  w25?: boolean;
+  w100?: boolean;
   type?: string;
 }
 
@@ -18,6 +20,8 @@ const Button: FC<buttonProps> = ({
   icon,
   w60,
   type,
+  w25,
+  w100,
 }) => {
   return (
     <button
@@ -29,10 +33,10 @@ const Button: FC<buttonProps> = ({
             ? style
             : `bg-red border-2 border-red px-10 py-3 text-white font-main text-2xl rounded-full my-8 uppercase font-bold ${
                 w60 ? "w-3/5" : ""
-              }`
+              } ${w25 ? "w-1/4" : ""} ${w100 ? "w-full" : ""}`
           : `bg-[#ccc] px-10 py-3 text-white font-main text-2xl rounded-full my-8 uppercase font-bold ${
               w60 ? "w-3/5" : ""
-            }`
+            } ${w25 ? "w-1/4" : ""} ${w100 ? "w-full" : ""}`
       }
       onClick={() => {
         hanleOnClick && hanleOnClick();

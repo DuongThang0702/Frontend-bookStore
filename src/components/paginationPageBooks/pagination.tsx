@@ -49,8 +49,8 @@ const Page: FC<PageProps> = ({ totalCount }) => {
       ) : (
         ""
       )}
-      {pagination?.map((el) => (
-        <PagiItem key={el}>{el}</PagiItem>
+      {pagination?.map((el, index) => (
+        <PagiItem key={index}>{el}</PagiItem>
       ))}
       {currentPage + 1 <= totalPage ? (
         <div

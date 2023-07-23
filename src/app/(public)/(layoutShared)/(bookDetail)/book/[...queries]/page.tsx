@@ -1,16 +1,14 @@
 "use client";
-import { BookProps, IBook } from "@/utils/IBook";
+import { BookProps, IBook } from "@/utils/interface/IBook";
 import { FC, useEffect, useState } from "react";
 import { apiGetBookById, apiGetBooks } from "@/api";
 import Image from "next/image";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import icon from "@/utils/icon";
-import Button from "@/components/form/button";
-import { CustomSlider, TitleBook } from "@/components";
-import Loading from "@/components/effect/Loading";
-
+import { CustomSlider, TitleBook, Loading, Button } from "@/components";
+import DOMPurify from "dompurify";
 interface pageProps {
-  params: { queries: [slug: string, bid: string, category: string] };
+  params: { queries: [slug: string, bid: string] };
 }
 
 const Page: FC<pageProps> = ({ params }) => {
@@ -30,12 +28,11 @@ const Page: FC<pageProps> = ({ params }) => {
     });
   };
 
-  const fetchBookByCategories = async () => {
+  const fetchDataRandom = async () => {
     setPending(true);
     await apiGetBooks({
       limit: 10,
       page: Math.round(Math.random() * 10),
-      category: params.queries[2],
     }).then((rs) => {
       if (rs.data.error === 0) {
         setRelative(rs.data);
@@ -48,7 +45,7 @@ const Page: FC<pageProps> = ({ params }) => {
   useEffect(() => {
     if (params.queries[1]) {
       fetchData();
-      fetchBookByCategories();
+      fetchDataRandom();
     }
   }, [params.queries[1]]);
 
@@ -109,7 +106,6 @@ const Page: FC<pageProps> = ({ params }) => {
                   </div>
                   <div className="flex">
                     <div className="mr-6">
-                      {" "}
                       <Button
                         name="ADD TO CART"
                         status={true}
@@ -130,12 +126,17 @@ const Page: FC<pageProps> = ({ params }) => {
                     <h1 className="text-[2.8rem] font-serif font-semibold">
                       Description
                     </h1>
-                    <p className="text-[1.6rem]">{book.description}</p>
+                    <div
+                      className="text-[1.6rem]"
+                      dangerouslySetInnerHTML={{
+                        __html: DOMPurify.sanitize(book.description),
+                      }}
+                    ></div>
                   </div>
                 </div>
               </div>
               <div className="mt-12">
-                <TitleBook title="Maybe You Will Like" />
+                <TitleBook title="Random" />
                 {pending ? (
                   <Loading />
                 ) : error ? (

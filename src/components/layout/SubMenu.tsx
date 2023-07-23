@@ -1,6 +1,6 @@
 import { FC } from "react";
 import Link from "next/link";
-import { NavigationLink, SubMenu } from "@/utils/ILayout";
+import { NavigationLink, SubMenu } from "@/utils/interface/ILayout";
 interface SubMenuProps {
   item?: Array<SubMenu>;
 }
