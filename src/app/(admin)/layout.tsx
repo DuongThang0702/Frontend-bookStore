@@ -6,7 +6,6 @@ import { useRouter } from "next/navigation";
 import { useSelector } from "react-redux";
 import { SidebarAdmin } from "@/components";
 import { ToastContainer } from "react-toastify";
-import { useState } from "react";
 export default function AdminLayout({
   children,
 }: {
@@ -14,17 +13,16 @@ export default function AdminLayout({
 }) {
   const router = useRouter();
   const { isLoggedIn, current } = useSelector((state: RootState) => state.user);
-  if (!isLoggedIn || !current || current.role !== "admin")
-    return router.push(`/${path.LOGIN}`);
   const { modelChildren, isShowModel } = useSelector(
     (state: RootState) => state.app
   );
-  const [isShowLoading, setIsShowLoading] = useState<boolean>(false);
-  if (isShowModel) setIsShowLoading(isShowModel);
+  if (!isLoggedIn || !current || current.role !== "admin")
+    return router.push(`/${path.LOGIN}`);
+
   return (
     <>
       <div className="flex relative min-h-screen">
-        {isShowModel && isShowLoading && (
+        {isShowModel && (
           <div className="absolute top-0 bottom-0 right-0 left-0 z-50">
             {modelChildren}
           </div>
