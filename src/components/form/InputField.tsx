@@ -1,4 +1,4 @@
-import { Dispatch, FC, SetStateAction } from "react";
+import { Dispatch, FC, SetStateAction, memo } from "react";
 
 interface InputFieldProps {
   styleLabel?: string;
@@ -59,4 +59,4 @@ const InputField: FC<InputFieldProps> = ({
   );
 };
 
-export default InputField;
+export default memo(InputField);
