@@ -20,3 +20,4 @@ export { default as InputForm } from "./form/inputForm";
 export { default as RadioForm } from "./form/radioForm";
 export { default as SelectForm } from "./form/selectForm";
 export { default as MarkdownEditor } from "./form/markdown";
+export { default as SidebarMember } from "./member/sidebar";

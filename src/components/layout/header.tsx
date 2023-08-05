@@ -32,8 +32,6 @@ const Header: FC = ({}) => {
 
   const handleLogout = async () => {
     const response = await apiLogout();
-    console.log(response);
-
     if (response.data.error === 0) dispatch(logout());
   };
   useEffect(() => {
@@ -43,6 +41,16 @@ const Header: FC = ({}) => {
         router.push("/login");
       });
   }, [mes]);
+
+  useEffect(() => {
+    const handleShowOptions = (e: MouseEvent) => {
+      const profile = document.getElementById("options");
+      if (!profile?.contains(e.target as Node)) setIsShow(false);
+    };
+    document.addEventListener("click", handleShowOptions);
+    return () => document.removeEventListener("click", handleShowOptions);
+  }, []);
+
   return (
     <div className="flex justify-between p-12 items-center">
       <Link href={path.HOME}>
@@ -73,11 +81,12 @@ const Header: FC = ({}) => {
       <div className=" flex items-center">
         {isLoggedIn && current ? (
           <div className="flex mx-[2rem]">
-            <span className="mr-12 text-2xl font-header ">
+            <span className="mr-12 text-2xl font-header" onClick={(e) => e}>
               Welcome, {current?.lastName} {current?.firstName}
             </span>
             <span
               onClick={hanleShowMenuUser}
+              id="options"
               className="flex items-center justify-center cursor-pointer relative"
             >
               <FontAwesomeIcon
@@ -87,17 +96,26 @@ const Header: FC = ({}) => {
 
               {isShow && (
                 <div className="absolute top-[3rem] right-[-7rem] z-10 bg-[white] shadow-menu">
-                  <Link
-                    href={
-                      current.role === "admin"
-                        ? `/${path.ADMIN}/${path.DASHBOARD}`
-                        : `/${path.MEMBER}/${path.PERSONAL}`
-                    }
-                    className="text-2xl min-w-[20rem] block font-header 
+                  <>
+                    <Link
+                      className="text-2xl min-w-[20rem] block font-header 
                     font-light opacity-80 tracking-wider p-8 mr-2 hover:text-purple"
-                  >
-                    Profile
-                  </Link>
+                      href={`/${path.MEMBER}/${path.PERSONAL}`}
+                    >
+                      Profile
+                    </Link>
+                    {current.role === "admin" && (
+                      <>
+                        <Link
+                          className="text-2xl min-w-[20rem] block font-header 
+                    font-light opacity-80 tracking-wider p-8 mr-2 hover:text-purple"
+                          href={`/${path.ADMIN}/${path.DASHBOARD}`}
+                        >
+                          Admin workspace
+                        </Link>
+                      </>
+                    )}
+                  </>
                   <button
                     onClick={handleLogout}
                     className="text-2xl text-start min-w-[20rem] block font-header 

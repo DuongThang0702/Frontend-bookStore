@@ -1,30 +1,24 @@
 "use client";
 
-import { AppDispatch, RootState } from "@/redux/store";
+import { RootState } from "@/redux/store";
 import path from "@/utils/path";
 import { useRouter } from "next/navigation";
-import { useDispatch, useSelector } from "react-redux";
-import { SidebarAdmin } from "@/components";
+import { useSelector } from "react-redux";
+import { SidebarMember } from "@/components";
 import { ToastContainer } from "react-toastify";
-import { useEffect } from "react";
-import { getCategoriesBook } from "@/redux/book/asyncAction";
-export default function AdminLayout({
+export default function PublicLayout({
   children,
 }: {
   children: React.ReactNode;
 }) {
-  const dispatch = useDispatch<AppDispatch>();
-  useEffect(() => {
-    dispatch(getCategoriesBook());
-  }, []);
   const router = useRouter();
   const { isLoggedIn, current } = useSelector((state: RootState) => state.user);
-  const { modelChildren, isShowModel } = useSelector(
+  const { isShowModel, modelChildren } = useSelector(
     (state: RootState) => state.app
   );
-  if (!isLoggedIn || !current || current.role !== "admin")
-    return router.push(`/${path.LOGIN}`);
-
+  if (!isLoggedIn || !current) {
+    router.push(`/${path.LOGIN}`);
+  }
   return (
     <>
       <div className="flex relative min-h-screen">
@@ -34,7 +28,7 @@ export default function AdminLayout({
           </div>
         )}
         <div className="absolute bottom-0 top-0">
-          <SidebarAdmin />
+          <SidebarMember />
         </div>
         <div className="w-[30rem]"></div>
         <div className="flex-auto ml-8">{children}</div>

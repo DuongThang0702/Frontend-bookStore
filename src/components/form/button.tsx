@@ -31,9 +31,10 @@ const Button: FC<buttonProps> = ({
         status
           ? style
             ? style
-            : `bg-red border-2 border-red px-10 py-3 text-white font-main text-2xl rounded-full my-8 uppercase font-bold ${
-                w60 ? "w-3/5" : ""
-              } ${w25 ? "w-1/4" : ""} ${w100 ? "w-full" : ""}`
+            : `bg-red border-2 border-red px-10 py-3 text-white font-main 
+            text-2xl rounded-full my-8 uppercase font-bold  ${
+              w60 ? "w-3/5" : ""
+            } ${w25 ? "w-1/4" : ""} ${w100 ? "w-full" : ""}`
           : `bg-[#ccc] px-10 py-3 text-white font-main text-2xl rounded-full my-8 uppercase font-bold ${
               w60 ? "w-3/5" : ""
             } ${w25 ? "w-1/4" : ""} ${w100 ? "w-full" : ""}`

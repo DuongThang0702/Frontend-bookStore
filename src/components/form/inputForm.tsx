@@ -56,7 +56,9 @@ const inputForm: FC<InputForm> = ({
         {...register(id, validate)}
         defaultValue={defaultValue}
       />
-      {errors && <small className="text-red font-semibold">{errors}</small>}
+      {errors && (
+        <small className="text-red font-semibold text-base">{errors}</small>
+      )}
     </>
   );
 };

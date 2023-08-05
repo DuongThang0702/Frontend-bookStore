@@ -13,6 +13,9 @@ import {
   faBookAtlas,
   faXmark,
   faUpload,
+  faUserLarge,
+  faClockRotateLeft,
+  faFileLines,
 } from "@fortawesome/free-solid-svg-icons";
 import {
   faFacebook,
@@ -39,6 +42,9 @@ const icon = {
   faBookAtlas,
   faXmark,
   faUpload,
+  faUserLarge,
+  faClockRotateLeft,
+  faFileLines,
 };
 
 export default icon;

@@ -16,6 +16,8 @@ import { toast } from "react-toastify";
 import Image from "next/image";
 import { useDispatch } from "react-redux";
 import { showModel } from "@/redux/app";
+import { useRouter } from "next/navigation";
+import path from "@/utils/path";
 
 interface FormData {
   title: string;
@@ -31,18 +33,17 @@ interface Options {
 }
 
 const Page: FC = ({}) => {
+  const router = useRouter();
   const dispatch = useDispatch();
   const [categories, setCategories] = useState<ICategory | null>(null);
   const [preview, setPreview] = useState<string | null>(null);
   const [payload, setPayload] = useState<{ description: string }>({
     description: "",
   });
-
   const fetchCategories = async () => {
     const resopnse = await apiGetCategoryBooks();
     if (resopnse.data.error === 0) setCategories(resopnse.data);
   };
-
   const handleCreateBook = async (data: object) => {
     const category = watch(["category"])[0].map((el) => el.slug);
     const finalPayload = { ...data, ...payload };
@@ -58,8 +59,10 @@ const Page: FC = ({}) => {
     );
     const response = await apiCreateBook(formData);
     dispatch(showModel({ isShowModel: false, modelChildren: null }));
-    if (response.data.error === 0) toast.success(response.data.mes);
-    else toast.error(response.data.mes);
+    if (response.data.error === 0) {
+      toast.success(response.data.mes);
+      router.push(`/${path.ADMIN}/${path.MANAGE_BOOKS}?page=1`);
+    } else toast.error(response.data.mes);
   };
 
   const {

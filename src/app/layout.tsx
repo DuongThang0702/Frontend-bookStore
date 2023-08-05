@@ -11,11 +11,12 @@ export default function RootLayout({
 }: {
   children: React.ReactNode;
 }) {
-  
   return (
     <html lang="en">
-      <head><title>BooksStore</title></head>
-         <body suppressHydrationWarning={true}>
+      <head>
+        <title>BooksStore</title>
+      </head>
+      <body suppressHydrationWarning={true}>
         <Providers>{children}</Providers>
         <ProgressBar
           height="4px"

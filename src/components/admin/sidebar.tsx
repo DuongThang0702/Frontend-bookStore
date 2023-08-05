@@ -11,7 +11,7 @@ import icon from "@/utils/icon";
 import { NavigationLink } from "@/utils/interface/ILayout";
 import sidebar from "@/style/admin/sidebar.module.css";
 
-export const adminSidebar: Array<NavigationLink> = [
+const adminSidebar: Array<NavigationLink> = [
   {
     id: 1,
     icon: <FontAwesomeIcon icon={icon.faGauge} />,

@@ -3,7 +3,7 @@ import { createAsyncThunk } from "@reduxjs/toolkit";
 
 export const getUserCurrent = createAsyncThunk(
   "user/current",
-  async (data, { rejectWithValue }) => {
+  async (_, { rejectWithValue }) => {
     const response = await apiGetUserCurrent();
     if (response?.data.error === 1) return rejectWithValue(response);
     if (response?.data.error === 2) return rejectWithValue(response);

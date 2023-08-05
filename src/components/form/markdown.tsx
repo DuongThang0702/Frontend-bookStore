@@ -5,9 +5,15 @@ interface MarkDownEditor {
   label: string;
   changeValue: any;
   name: string;
+  defaultValue?: string;
 }
 
-const MarkDownEditor: FC<MarkDownEditor> = ({ label, changeValue, name }) => {
+const MarkDownEditor: FC<MarkDownEditor> = ({
+  label,
+  changeValue,
+  name,
+  defaultValue,
+}) => {
   return (
     <>
       <span className="text-2xl font-semibold tracking-wider">{label}</span>
@@ -19,7 +25,7 @@ const MarkDownEditor: FC<MarkDownEditor> = ({ label, changeValue, name }) => {
           }))
         }
         apiKey={process.env.NEXT_PUBLIC_TINY_API_KEY}
-        initialValue="<p></p>"
+        initialValue={defaultValue ? defaultValue : "<p></p>"}
         init={{
           height: 500,
           menubar: false,

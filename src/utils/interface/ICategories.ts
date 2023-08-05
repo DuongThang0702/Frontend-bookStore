@@ -1,5 +1,5 @@
 export interface ICategory {
-  data?: {
+  data: {
     _id: string;
     createdAt: string;
     slug: string;

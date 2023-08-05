@@ -29,3 +29,6 @@ export const apiGetUserCurrent = () =>
 
 export const apiLogout = () =>
   axiosClient({ url: "/user/logout", method: "delete", withCredentials: true });
+
+export const apiUpdateCurrent = (data: object) =>
+  axiosClient({ url: "/user/current", method: "patch", data });

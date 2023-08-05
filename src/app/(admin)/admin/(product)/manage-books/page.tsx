@@ -1,14 +1,17 @@
 "use client";
-import { apiGetBooks } from "@/api";
+import { apiDeleteBook, apiGetBooks } from "@/api";
 import { InputForm, Pagination } from "@/components";
 import useDebounce from "@/hooks/useDebounce";
 import { BookProps, IBook } from "@/utils/interface";
 import moment from "moment";
 import Image from "next/image";
 import { useSearchParams } from "next/navigation";
-import { FC, useEffect, useState } from "react";
+import { FC, useEffect, useState, useCallback } from "react";
 import { useForm } from "react-hook-form";
 import { UpdateBook } from "@/components";
+import Swal from "sweetalert2";
+import { toast } from "react-toastify";
+
 interface Search {
   q: string;
 }
@@ -22,11 +25,11 @@ const Page: FC = ({}) => {
   } = useForm<Search>();
   const queriesDebounce = useDebounce(watch("q"), 800);
   const params = useSearchParams();
-  let page = parseInt(params.get("page") as string);
   const [Books, setBooks] = useState<BookProps | null>(null);
   const [render, setRender] = useState<boolean>(false);
   const [editData, setEditData] = useState<IBook | null>(null);
   const searchParams: { q?: string } = {};
+  let page = parseInt(params.get("page") as string);
 
   const fetchData = async (params?: object) => {
     const response = await apiGetBooks({
@@ -35,18 +38,44 @@ const Page: FC = ({}) => {
     });
     if (response.data.error === 0) setBooks(response.data);
   };
+
+  const reset = useCallback(() => setRender(!render), [render]);
+
+  const handleDeleteBook = async (bid: string) => {
+    Swal.fire({
+      title: "Are you sure",
+      text: "Are you ready remove this book",
+      showCancelButton: true,
+    }).then(async (rs) => {
+      if (rs.isConfirmed) {
+        const response = await apiDeleteBook(bid);
+
+        if (response.data.error === 0) {
+          reset();
+          toast.success(response.data.mes);
+        } else toast.error("Something went wrong !");
+      }
+    });
+  };
+
   useEffect(() => {
     if (queriesDebounce) searchParams.q = queriesDebounce;
     fetchData({ page, ...searchParams });
-  }, [page, queriesDebounce]);
+  }, [page, queriesDebounce, render]);
 
   return (
     <>
-      <div className="w-full p-8 relative h-full">
+      <div className="w-full p-8 relative min-h-full">
         {editData && (
-          <div className="absolute top-0 bottom-0 right-0 left-0 z-50 p-8">
-            <UpdateBook data={editData} render={render} />
-          </div>
+          <>
+            <div className="absolute top-0 bottom-0 right-0 left-0">
+              <UpdateBook
+                data={editData}
+                render={setRender}
+                setEditData={setEditData}
+              />
+            </div>
+          </>
         )}
         <h1 className="text-[4rem] font-bold mb-8">Manage Books</h1>
         <div className="mb-8 w-1/3 float-right">
@@ -107,12 +136,17 @@ const Page: FC = ({}) => {
                   </td>
                   <td className="py-2 px-4">
                     <span
-                      onClick={() => setEditData(el)}
+                      onClick={() => {
+                        setEditData(el);
+                      }}
                       className="px-4 text-orange-800 hover:underline cursor-pointer"
                     >
                       Edit
                     </span>
-                    <span className="px-4 text-orange-800 hover:underline cursor-pointer">
+                    <span
+                      className="px-4 text-orange-800 hover:underline cursor-pointer"
+                      onClick={() => handleDeleteBook(el._id)}
+                    >
                       Delete
                     </span>
                   </td>
